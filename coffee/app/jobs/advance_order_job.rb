@@ -27,7 +27,8 @@ class AdvanceOrderJob < ApplicationJob
 
     notification = ApplicationPushNotification.new(
       title: "Your order is ready! ☕",
-      body: "Order ##{order.id} is waiting for you at the counter."
+      body: "Order ##{order.id} is waiting for you at the counter.",
+      data: {path: "/orders/#{order.id}"}
     )
     notification.deliver_later_to(devices)
   end
