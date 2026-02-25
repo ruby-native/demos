@@ -1,7 +1,7 @@
 <%= render "shared/header", title: "Search" %>
 
 <div data-controller="search" data-action="bridge--search:queried->search#queried">
-  <div data-controller="bridge--search"></div>
+  <%= native_search_tag %>
 
   <div class="container">
     <%= form_with url: search_path, method: :get, data: { search_target: "form", turbo_frame: "search_results", turbo_action: "replace" } do |f| %>

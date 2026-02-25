@@ -4,7 +4,7 @@
   <div class="container<%= " d-flex justify-content-between" if native_app? %>">
     <% if native_app? %>
       <div style="width: 40px;">
-        <%= native_back_button class: "nav-link p-0" %>
+        <%= native_back_button_tag class: "nav-link p-0" %>
       </div>
 
       <span class="navbar-brand mb-0"><%= content_for(:title).presence || "Bookmarks" %></span>

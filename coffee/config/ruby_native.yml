@@ -1,6 +1,3 @@
-app:
-  name: Daily Grind
-
 appearance:
   tint_color: "#5C3D2E"
   background_color:

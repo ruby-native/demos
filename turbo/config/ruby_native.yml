@@ -1,6 +1,3 @@
-app:
-  name: Bookmarks
-
 appearance:
   tint_color: "#007AFF"
   background_color:

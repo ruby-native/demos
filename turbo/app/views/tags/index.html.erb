@@ -1,3 +1,10 @@
+<% if user_signed_in? %>
+  <%= native_menu_tag(title: current_user.email, side: :left) do |menu| %>
+    <%= menu.item "Profile", profile_path %>
+    <%= menu.item "Sign out", session_path, method: :delete, destructive: true %>
+  <% end %>
+<% end %>
+
 <%= render "shared/header", title: "Tags" %>
 
 <% if @tags.any? %>

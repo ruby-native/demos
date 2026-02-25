@@ -1,5 +1,4 @@
 <% content_for :title, "Sign in" %>
-<% content_for :head, native_form_tag %>
 
 <div class="container d-flex flex-column mw-400 mx-auto">
   <% unless native_app? %>
@@ -8,7 +7,7 @@
     </h1>
   <% end %>
 
-  <%= form_with url: session_path, class: "row g-3 mt-1", data: { controller: "bridge--form" } do |form| %>
+  <%= form_with url: session_path, class: "row g-3 mt-1", data: native_form_data do |form| %>
     <div>
       <%= form.label :email, class: "form-label" %>
       <%= form.email_field :email,
@@ -26,7 +25,7 @@
     </div>
 
     <div>
-      <%= form.submit "Sign in", class: "btn btn-primary w-100", data: { bridge__form_target: "submit" } %>
+      <%= form.submit "Sign in", class: "btn btn-primary w-100", data: native_submit_data %>
     </div>
   <% end %>
 

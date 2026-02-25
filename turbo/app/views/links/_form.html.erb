@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_with model: link, class: "row g-3 mt-1", data: { controller: "bridge--form" } do |form| %>
+<%= form_with model: link, class: "row g-3 mt-1", data: native_form_data do |form| %>
   <div>
     <%= form.label :title, class: "form-label" %>
     <%= form.text_field :title, class: "form-control" %>
@@ -31,6 +31,6 @@
   </div>
 
   <div class="d-grid d-sm-flex justify-content-sm-end mt-4">
-    <%= form.submit "Save", class: "btn btn-primary", data: { bridge__form_target: "submit" } %>
+    <%= form.submit "Save", class: "btn btn-primary", data: native_submit_data %>
   </div>
 <% end %>

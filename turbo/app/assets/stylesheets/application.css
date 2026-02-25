@@ -17,19 +17,6 @@ html {
   scroll-behavior: auto !important;
 }
 
-/* Hide the HTML submit button when the "form" component is registered. */
-[data-bridge-components~="form"]
-[data-controller~="bridge--form"]
-[type="submit"] {
-  display: none;
-}
-
-/* Hide the HTML element when the "menu" component is registered. */
-[data-bridge-components~="menu"]
-[data-controller~="bridge--menu"] {
-  display: none;
-}
-
 .turbo-progress-bar {
   background-color: #007AFF;
   top: 56px;

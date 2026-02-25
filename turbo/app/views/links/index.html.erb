@@ -1,3 +1,10 @@
+<% if user_signed_in? %>
+  <%= native_menu_tag(title: current_user.email, side: :left) do |menu| %>
+    <%= menu.item "Profile", profile_path %>
+    <%= menu.item "Sign out", session_path, method: :delete, destructive: true %>
+  <% end %>
+<% end %>
+
 <%= render "shared/header", title: "Links" %>
 
 <% if @links.any? %>
@@ -9,5 +16,5 @@
 <% end %>
 
 <div class="container mt-4">
-  <%= link_to "Add a link", new_link_path, class: "btn btn-primary" %>
+  <%= native_button_tag "Add a link", new_link_path, ios_image: "plus", class: "btn btn-primary" %>
 </div>
