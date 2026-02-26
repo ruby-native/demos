@@ -2,6 +2,6 @@
 set -o errexit
 
 gem install bundler --conservative
-sed -i '/^PATH$/,/^$/d' Gemfile.lock
-bundle update ruby_native --jobs 4
+bundle lock --update --jobs 4
+bundle install --jobs 4
 bundle exec rails assets:precompile
