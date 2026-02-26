@@ -13,7 +13,12 @@ gem "inertia_rails"
 gem "vite_rails"
 
 # Native bridge.
-gem "ruby_native", path: "../../gem"
+gemfile_local = File.join(__dir__, "Gemfile.local")
+if File.exist?(gemfile_local)
+  eval_gemfile(gemfile_local)
+else
+  gem "ruby_native"
+end
 gem "action_push_native"
 
 group :development do

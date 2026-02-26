@@ -2,6 +2,5 @@
 set -o errexit
 
 gem install bundler --conservative
-bundle lock --update --jobs 4
-bundle install --jobs 4
+bundle update ruby_native --jobs 4
 bundle exec rails assets:precompile

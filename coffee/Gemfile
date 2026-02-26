@@ -16,10 +16,11 @@ gem "turbo-rails"
 gem "tailwindcss-rails"
 
 # Native bridge.
-if ENV["RENDER"]
-  gem "ruby_native"
+gemfile_local = File.join(__dir__, "Gemfile.local")
+if File.exist?(gemfile_local)
+  eval_gemfile(gemfile_local)
 else
-  gem "ruby_native", path: "../../gem"
+  gem "ruby_native"
 end
 
 # Background jobs and WebSockets.
