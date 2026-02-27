@@ -1,7 +1,7 @@
 PATH
   remote: ../../gem
   specs:
-    ruby_native (0.1.0)
+    ruby_native (0.1.1)
       rails (>= 7.1)
       rqrcode (~> 3.0)
 
