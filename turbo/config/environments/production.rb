@@ -60,7 +60,7 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts << "demo.rubynative.dev"
+  config.hosts << "demo.rubynative.com"
   config.hosts << ".onrender.com"
 
   # Skip DNS rebinding protection for the default health check endpoint.

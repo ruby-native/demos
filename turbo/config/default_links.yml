@@ -8,7 +8,7 @@
     - newsletter
 
 - title: Ruby Native
-  url: https://rubynative.dev
+  url: https://rubynative.com
   description: Turn your Rails app into an iOS app. Any frontend framework. No Xcode required.
   tags:
     - rails
