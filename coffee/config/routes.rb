@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   resource :guest_session, only: [:create]
   resource :registration, only: [:new, :create]
 
+  # OAuth callbacks.
+  get "/auth/:provider/callback", to: "omniauth_callbacks#create"
+  post "/auth/:provider/callback", to: "omniauth_callbacks#create"
+  get "/auth/failure", to: "omniauth_callbacks#failure"
+
   root "pages#landing"
 
   get "up" => "rails/health#show", as: :rails_health_check

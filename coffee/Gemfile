@@ -23,6 +23,12 @@ else
   gem "ruby_native"
 end
 
+# OAuth.
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-apple"
+gem "omniauth-rails_csrf_protection"
+
 # Background jobs and WebSockets.
 gem "solid_queue"
 gem "solid_cable"

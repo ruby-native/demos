@@ -46,6 +46,25 @@
     </div>
   <% end %>
 
+  <div class="relative mt-8">
+    <div class="absolute inset-0 flex items-center">
+      <div class="w-full border-t border-coffee-200 dark:border-coffee-700"></div>
+    </div>
+    <div class="relative flex justify-center text-sm">
+      <span class="bg-cream dark:bg-cream-dark px-4 text-coffee-400 dark:text-coffee-500">or</span>
+    </div>
+  </div>
+
+  <div class="mt-6 space-y-3">
+    <%= button_to "/auth/google_oauth2", data: { turbo: false }, class: "w-full rounded-xl border border-coffee-300 dark:border-coffee-600 text-coffee-700 dark:text-coffee-300 font-semibold py-3 hover:bg-coffee-50 dark:hover:bg-coffee-900 transition cursor-pointer" do %>
+      Sign up with Google
+    <% end %>
+
+    <%= button_to "/auth/apple", data: { turbo: false }, class: "w-full rounded-xl bg-black dark:bg-white text-white dark:text-black font-semibold py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition cursor-pointer" do %>
+      Sign up with Apple
+    <% end %>
+  </div>
+
   <p class="text-center mt-6 text-sm text-coffee-500 dark:text-coffee-400">
     Already have an account?
     <%= link_to "Sign in", new_session_path, class: "font-medium text-coffee-800 dark:text-coffee-200 underline" %>
