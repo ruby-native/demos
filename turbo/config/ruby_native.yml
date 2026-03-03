@@ -1,3 +1,6 @@
+app:
+  mode: advanced
+
 appearance:
   tint_color: "#007AFF"
   background_color:
