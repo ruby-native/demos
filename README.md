@@ -1,6 +1,6 @@
 # Demo apps
 
-Three Rails apps demonstrating the `ruby_native` gem with different frontend frameworks.
+Four Rails apps demonstrating the `ruby_native` gem with different frontend frameworks.
 
 ## Turbo demo (`turbo/`)
 
@@ -29,6 +29,15 @@ A coffee shop ordering app (Daily Grind) using Tailwind CSS.
 - **Start:** `bin/dev`
 - **Login:** `demo@example.com` / `password`
 
+## Vue demo (`vue/`)
+
+A habit tracker app using Inertia.js + Vue 3.
+
+- **Stack:** Rails 8.1.2, Inertia Rails, Vue 3, Vite, Tailwind CSS 4
+- **Port:** 3004 (Vite on 3236)
+- **Start:** `bin/dev` (uses foreman)
+- **Login:** `user@example.com` / `password`
+
 ## Setup
 
 All apps reference the gem at `../../gem`. From any demo directory:
@@ -39,4 +48,4 @@ bin/rails db:setup
 bin/dev
 ```
 
-The React demo also needs `npm install` before first run.
+The React and Vue demos also need `npm install` before first run.

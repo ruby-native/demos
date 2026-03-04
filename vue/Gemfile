@@ -1,0 +1,26 @@
+source "https://rubygems.org"
+
+gem "rails", "~> 8.1.2"
+gem "bcrypt", "~> 3.1.7"
+gem "bootsnap", require: false
+gem "propshaft"
+gem "puma", ">= 5.0"
+gem "sqlite3", ">= 2.1"
+gem "tzinfo-data", platforms: %i[windows jruby]
+
+# JavaScript frontend.
+gem "inertia_rails"
+gem "vite_rails"
+
+# Native bridge.
+gem_path = File.expand_path("../../gem", __dir__)
+if File.exist?(gem_path)
+  gem "ruby_native", path: gem_path
+else
+  gem "ruby_native"
+end
+gem "action_push_native"
+
+group :development do
+  gem "web-console"
+end

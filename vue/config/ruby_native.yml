@@ -1,0 +1,19 @@
+appearance:
+  tint_color: "#4F46E5"
+  background_color:
+    light: "#FFFFFF"
+    dark: "#1C1C1E"
+  status_bar_color:
+    light: "#FFFFFF"
+    dark: "#1C1C1E"
+
+tabs:
+  - title: Today
+    path: /today
+    icon: calendar
+  - title: Habits
+    path: /habits
+    icon: list.bullet
+  - title: Profile
+    path: /profile
+    icon: person
