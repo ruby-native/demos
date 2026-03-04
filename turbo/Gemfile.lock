@@ -1,7 +1,7 @@
 PATH
   remote: /Users/joemasilotti/workspace/projects/ruby-native/gem
   specs:
-    ruby_native (0.1.2)
+    ruby_native (0.1.3)
       rails (>= 7.1)
       rqrcode (~> 3.0)
 
