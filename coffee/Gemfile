@@ -20,7 +20,7 @@ gem_path = File.expand_path("../../gem", __dir__)
 if File.exist?(gem_path)
   gem "ruby_native", path: gem_path
 else
-  gem "ruby_native"
+  gem "ruby_native", github: "Ruby-Native/gem", branch: "main"
 end
 
 # OAuth.
