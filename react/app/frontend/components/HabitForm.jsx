@@ -1,5 +1,5 @@
 import { useForm } from "@inertiajs/react"
-import NativeMeta from "~/components/NativeMeta"
+import { NativeForm } from "ruby_native/react"
 
 const COLORS = ["#EF4444", "#F59E0B", "#10B981", "#3B82F6", "#6366F1", "#8B5CF6", "#EC4899", "#4F46E5"]
 
@@ -19,7 +19,7 @@ export default function HabitForm({ habit, action, method = "post", errors }) {
 
   return (
     <>
-      <NativeMeta nativeForm={true} />
+      <NativeForm />
       <form onSubmit={handleSubmit} className="space-y-6">
         {errors?.length > 0 && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">

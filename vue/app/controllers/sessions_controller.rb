@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   def new
     @page_title = "Sign in"
-    @native_form = true
     render inertia: "Sessions/New"
   end
 
@@ -15,7 +14,6 @@ class SessionsController < ApplicationController
     else
       flash.now.alert = "Invalid email or password."
       @page_title = "Sign in"
-      @native_form = true
       render inertia: "Sessions/New"
     end
   end

@@ -1,6 +1,6 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3"
-import NativeMeta from "~/components/NativeMeta.vue"
+import { NativeForm } from "ruby_native/vue"
 
 const form = useForm({
   email: "user@example.com",
@@ -14,7 +14,7 @@ function handleSubmit() {
 
 <template>
   <Head title="Sign in" />
-  <NativeMeta :nativeForm="true" />
+  <NativeForm />
   <div class="px-4 pt-12">
     <h1 class="text-2xl font-bold text-gray-900 text-center">Habits</h1>
     <p class="text-gray-500 text-center mt-1">Sign in to continue</p>

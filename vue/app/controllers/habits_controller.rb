@@ -18,7 +18,6 @@ class HabitsController < ApplicationController
 
   def new
     @page_title = "New habit"
-    @native_form = true
     render inertia: "Habits/New", props: {
       habit: {name: "", description: "", color: "#4F46E5"}
     }
@@ -27,7 +26,6 @@ class HabitsController < ApplicationController
   def edit
     habit = current_user.habits.find(params[:id])
     @page_title = "Edit habit"
-    @native_form = true
     render inertia: "Habits/Edit", props: {
       habit: habit.as_json(only: %i[id name description color])
     }
@@ -41,7 +39,6 @@ class HabitsController < ApplicationController
       redirect_to habits_path, notice: "Habit created."
     else
       @page_title = "New habit"
-      @native_form = true
       render inertia: "Habits/New", props: {
         habit: habit.as_json(only: %i[name description color]),
         errors: habit.errors.full_messages
@@ -56,7 +53,6 @@ class HabitsController < ApplicationController
       redirect_to habits_path, notice: "Habit updated."
     else
       @page_title = "Edit habit"
-      @native_form = true
       render inertia: "Habits/Edit", props: {
         habit: habit.as_json(only: %i[id name description color]),
         errors: habit.errors.full_messages

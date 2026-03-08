@@ -1,6 +1,6 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3"
-import NativeMeta from "~/components/NativeMeta.vue"
+import { NativeForm } from "ruby_native/vue"
 
 const props = defineProps({
   user: Object,
@@ -21,7 +21,7 @@ function handleSubmit() {
 
 <template>
   <Head title="Edit profile" />
-  <NativeMeta :nativeForm="true" />
+  <NativeForm />
   <div class="px-4 pt-6 pb-4">
     <h1 class="text-2xl font-bold text-gray-900">Edit profile</h1>
   </div>

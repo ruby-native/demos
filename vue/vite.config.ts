@@ -9,6 +9,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "~": resolve(__dirname, "app/frontend"),
+      "ruby_native": resolve(__dirname, "../../gem/app/javascript/ruby_native"),
     },
+    dedupe: ["vue"],
   },
 })

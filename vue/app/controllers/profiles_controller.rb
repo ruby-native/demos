@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
 
   def edit
     @page_title = "Edit profile"
-    @native_form = true
     render inertia: "Profiles/Edit", props: {
       user: current_user.as_json(only: %i[id name email])
     }
@@ -19,7 +18,6 @@ class ProfilesController < ApplicationController
       redirect_to profile_path, notice: "Profile updated."
     else
       @page_title = "Edit profile"
-      @native_form = true
       render inertia: "Profiles/Edit", props: {
         user: current_user.as_json(only: %i[id name email]),
         errors: current_user.errors.full_messages

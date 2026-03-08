@@ -1,5 +1,5 @@
 import { Head, useForm } from "@inertiajs/react"
-import NativeMeta from "~/components/NativeMeta"
+import { NativeForm } from "ruby_native/react"
 
 export default function Edit({ user, errors }) {
   const { data, setData, patch, processing } = useForm({
@@ -17,7 +17,7 @@ export default function Edit({ user, errors }) {
   return (
     <>
       <Head title="Edit profile" />
-      <NativeMeta nativeForm={true} />
+      <NativeForm />
       <div className="px-4 pt-6 pb-4">
         <h1 className="text-2xl font-bold text-gray-900">Edit profile</h1>
       </div>

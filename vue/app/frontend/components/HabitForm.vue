@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3"
-import NativeMeta from "~/components/NativeMeta.vue"
+import { NativeForm } from "ruby_native/vue"
 
 const props = defineProps({
   habit: Object,
@@ -25,7 +25,7 @@ function handleSubmit() {
 </script>
 
 <template>
-  <NativeMeta :nativeForm="true" />
+  <NativeForm />
   <form @submit.prevent="handleSubmit" class="space-y-6">
     <div v-if="errors?.length > 0" class="bg-red-50 border border-red-200 rounded-lg p-4">
       <p v-for="(error, i) in errors" :key="i" class="text-sm text-red-800">{{ error }}</p>

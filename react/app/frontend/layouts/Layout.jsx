@@ -1,4 +1,5 @@
 import { usePage } from "@inertiajs/react"
+import { NativeTabs, NativePush } from "ruby_native/react"
 import Navbar from "~/components/Navbar"
 import Flash from "~/components/Flash"
 
@@ -7,7 +8,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {user_signed_in && <div data-native-tabs data-native-push hidden />}
+      {user_signed_in && <><NativeTabs /><NativePush /></>}
       <Navbar />
       <div className="pt-12">
         <Flash />

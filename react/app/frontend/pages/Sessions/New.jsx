@@ -1,5 +1,5 @@
 import { Head, useForm } from "@inertiajs/react"
-import NativeMeta from "~/components/NativeMeta"
+import { NativeForm } from "ruby_native/react"
 
 export default function New() {
   const { data, setData, post, processing } = useForm({
@@ -15,7 +15,7 @@ export default function New() {
   return (
     <>
       <Head title="Sign in" />
-      <NativeMeta nativeForm={true} />
+      <NativeForm />
       <div className="px-4 pt-12">
         <h1 className="text-2xl font-bold text-gray-900 text-center">Habits</h1>
         <p className="text-gray-500 text-center mt-1">Sign in to continue</p>
