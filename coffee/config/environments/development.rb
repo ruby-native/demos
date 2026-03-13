@@ -65,8 +65,4 @@ Rails.application.configure do
   # Allow Cloudflare tunnels to access development site.
   config.hosts << ".rubynative.com"
 
-  # Allow session cookies on cross-site POSTs (needed for Apple OAuth callback).
-  # same_site: :none requires secure: true, which breaks plain HTTP localhost.
-  # The OAuth flow goes through the Cloudflare tunnel (HTTPS), so this only
-  # needs to be set in production. Removed here to keep localhost working.
 end

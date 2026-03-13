@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resource :registration, only: [:new, :create]
 
   # OAuth callbacks.
+  get "/auth/:provider", to: redirect("/session/new")
   get "/auth/:provider/callback", to: "omniauth_callbacks#create"
   post "/auth/:provider/callback", to: "omniauth_callbacks#create"
   get "/auth/failure", to: "omniauth_callbacks#failure"
