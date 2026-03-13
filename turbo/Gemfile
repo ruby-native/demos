@@ -26,6 +26,14 @@ end
 # Push notifications.
 gem "action_push_native"
 
+# In-app purchases.
+purchasekit_path = File.expand_path("../../../purchasekit/gem", __dir__)
+if File.exist?(purchasekit_path)
+  gem "purchasekit", path: purchasekit_path
+else
+  gem "purchasekit"
+end
+
 group :development do
   gem "web-console"
 end

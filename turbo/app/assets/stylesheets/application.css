@@ -17,6 +17,37 @@ html {
   scroll-behavior: auto !important;
 }
 
+body {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.plan-card {
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.plan-card:hover {
+  border-color: var(--bs-primary);
+}
+
+input:checked + .plan-card {
+  border-color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.plan-check-on {
+  display: none;
+}
+
+input:checked + .plan-card .plan-check-on {
+  display: inline-block;
+}
+
+input:checked + .plan-card .plan-check-off {
+  display: none;
+}
+
 .turbo-progress-bar {
   background-color: #007AFF;
   top: 56px;

@@ -2,7 +2,7 @@ app:
   mode: advanced
 
 appearance:
-  tint_color: "#007AFF"
+  tint_color: "#0D6EFD"
   background_color:
     light: "#FFFFFF"
     dark: "#212529"

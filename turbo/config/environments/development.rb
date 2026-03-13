@@ -60,4 +60,5 @@ Rails.application.configure do
 
   # Allow Cloudflare tunnels to access development server.
   config.hosts << ".trycloudflare.com"
+  config.hosts << "bookmarks.rubynative.com"
 end
