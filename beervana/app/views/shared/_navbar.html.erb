@@ -6,7 +6,7 @@
       </div>
 
       <span class="font-semibold">
-        <%= content_for(:title).presence || "Beervana" %>
+        <%= content_for(:nav_title).presence || content_for(:title).presence || "Beervana" %>
       </span>
 
       <div class="w-10"></div>

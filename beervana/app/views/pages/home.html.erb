@@ -1,4 +1,5 @@
 <% content_for :title, "Beervana - Your Portland brewery passport" %>
+<% content_for :nav_title, "Beervana" %>
 
 <div class="mt-12 text-center">
   <%= image_tag "logo.png", class: "w-24 h-24 rounded-2xl mx-auto shadow-md", alt: "Beervana" %>
@@ -10,7 +11,11 @@
     <%= link_to explore_path, class: "inline-block rounded-xl bg-brew-800 dark:bg-brew-200 text-white dark:text-stone-900 font-semibold px-6 py-3 no-underline hover:bg-brew-700 dark:hover:bg-brew-300 transition" do %>
       Explore breweries
     <% end %>
-    <% unless native_app? %>
+    <% if native_app? %>
+      <% unless user_signed_in? %>
+        <%= link_to "Sign in", new_session_path, class: "inline-block rounded-xl border border-stone-300 dark:border-stone-600 font-semibold px-6 py-3 no-underline hover:bg-stone-50 dark:hover:bg-stone-800 transition" %>
+      <% end %>
+    <% else %>
       <a href="https://apps.apple.com/app/beervana-brewery-passport/id6744076325">
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store" class="h-12">
       </a>
