@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_14_170000) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_14_180000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -39,6 +39,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_14_170000) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "brewery_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["brewery_id"], name: "index_bookmarks_on_brewery_id"
+    t.index ["user_id", "brewery_id"], name: "index_bookmarks_on_user_id_and_brewery_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "breweries", force: :cascade do |t|
     t.string "brewery_type"
     t.string "city", default: "Portland"
@@ -65,16 +75,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_14_170000) do
     t.boolean "wifi"
     t.index ["neighborhood_id"], name: "index_breweries_on_neighborhood_id"
     t.index ["open_brewery_db_id"], name: "index_breweries_on_open_brewery_db_id", unique: true
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "brewery_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["brewery_id"], name: "index_favorites_on_brewery_id"
-    t.index ["user_id", "brewery_id"], name: "index_favorites_on_user_id_and_brewery_id", unique: true
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -108,9 +108,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_14_170000) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmarks", "breweries"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "breweries", "neighborhoods"
-  add_foreign_key "favorites", "breweries"
-  add_foreign_key "favorites", "users"
   add_foreign_key "stamps", "breweries"
   add_foreign_key "stamps", "users"
 end

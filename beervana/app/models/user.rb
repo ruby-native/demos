@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_many :stamps, dependent: :destroy
   has_many :stamped_breweries, through: :stamps, source: :brewery
-  has_many :favorites, dependent: :destroy
-  has_many :favorited_breweries, through: :favorites, source: :brewery
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_breweries, through: :bookmarks, source: :brewery
 
   before_destroy :revoke_apple_token
 

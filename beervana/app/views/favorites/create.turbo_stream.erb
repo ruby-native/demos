@@ -1,3 +1,0 @@
-<%= turbo_stream.replace dom_id(@brewery, :favorite) do %>
-  <%= render "favorites/heart", brewery: @brewery, favorite: current_user.favorites.exists?(brewery: @brewery) %>
-<% end %>

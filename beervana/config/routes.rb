@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :neighborhoods, only: [:index, :show]
   resources :breweries, only: [:index, :show] do
     resource :stamp, only: [:create, :destroy]
-    resource :favorite, only: [:create, :destroy]
+    resource :bookmark, only: [:create, :destroy]
   end
 
   resource :session, only: [:new, :destroy]

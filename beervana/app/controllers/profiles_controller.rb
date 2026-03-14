@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   def show
     @stamp_count = current_user.stamps.count
-    @favorite_count = current_user.favorites.count
+    @bookmark_count = current_user.bookmarks.count
   end
 
   def destroy

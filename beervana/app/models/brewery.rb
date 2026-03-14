@@ -8,7 +8,7 @@ class Brewery < ApplicationRecord
   has_one_attached :map_mobile_dark
 
   has_many :stamps, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   scope :ordered, -> { order(:name) }
   scope :visible, -> { where.not(neighborhood_id: nil) }

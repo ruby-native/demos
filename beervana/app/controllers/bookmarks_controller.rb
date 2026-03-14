@@ -1,8 +1,8 @@
-class FavoritesController < ApplicationController
+class BookmarksController < ApplicationController
   before_action :set_brewery
 
   def create
-    current_user.favorites.find_or_create_by(brewery: @brewery)
+    current_user.bookmarks.find_or_create_by(brewery: @brewery)
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to brewery_path(@brewery) }
@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    current_user.favorites.find_by(brewery: @brewery)&.destroy
+    current_user.bookmarks.find_by(brewery: @brewery)&.destroy
     respond_to do |format|
       format.turbo_stream { render :create }
       format.html { redirect_to brewery_path(@brewery) }

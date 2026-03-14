@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@brewery, :bookmark) do %>
+  <%= render "bookmarks/button", brewery: @brewery, bookmarked: current_user.bookmarks.exists?(brewery: @brewery) %>
+<% end %>

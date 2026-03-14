@@ -19,15 +19,15 @@
         <p class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Stamped</p>
       </div>
       <div class="text-center flex-1 border-l border-stone-200 dark:border-stone-800">
-        <p class="text-2xl font-bold"><%= @favorite_count %></p>
-        <p class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Favorites</p>
+        <p class="text-2xl font-bold"><%= @bookmark_count %></p>
+        <p class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">Want to go</p>
       </div>
     </div>
   </div>
 
   <div class="mt-6 space-y-3">
     <%= button_to "Sign out", session_path, method: :delete, class: "w-full p-4 rounded-2xl bg-white dark:bg-stone-900 shadow-sm text-left font-medium text-red-600 dark:text-red-400 cursor-pointer" %>
-    <%= button_to "Delete account", profile_path, method: :delete, class: "w-full p-4 rounded-2xl bg-white dark:bg-stone-900 shadow-sm text-left font-medium text-red-600 dark:text-red-400 cursor-pointer", data: { turbo_confirm: "This will permanently delete your account and all your stamps and favorites. Are you sure?" } %>
+    <%= button_to "Delete account", profile_path, method: :delete, class: "w-full p-4 rounded-2xl bg-white dark:bg-stone-900 shadow-sm text-left font-medium text-red-600 dark:text-red-400 cursor-pointer", data: { turbo_confirm: "This will permanently delete your account and all your stamps and bookmarks. Are you sure?" } %>
   </div>
 
   <div class="mt-8 text-center">
