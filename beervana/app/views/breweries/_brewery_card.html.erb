@@ -1,7 +1,7 @@
 <%= link_to brewery_path(brewery), class: "block rounded-2xl bg-white dark:bg-stone-900 shadow-sm no-underline overflow-hidden" do %>
   <% if brewery.photo.attached? %>
     <%= image_tag brewery.photo.variant(resize_to_fill: [800, 320, { crop: :attention }]),
-      class: "w-full h-44 object-cover",
+      class: "w-full h-44 object-cover bg-stone-100 dark:bg-stone-800 shimmer",
       alt: brewery.name %>
   <% end %>
   <div class="flex items-center justify-between p-4">

@@ -4,7 +4,7 @@
 <% if @brewery.photo.attached? %>
   <div class="-mx-4 sm:mx-0 -mt-4">
     <%= image_tag @brewery.photo.variant(resize_to_fill: [800, 320, { crop: :attention }]),
-      class: "w-full h-48 object-cover sm:rounded-b-lg",
+      class: "w-full h-48 object-cover sm:rounded-b-lg bg-stone-100 dark:bg-stone-800 shimmer",
       alt: @brewery.name %>
   </div>
 <% end %>
@@ -91,10 +91,10 @@
   <% if has_map || @brewery.street.present? %>
     <%= link_to maps_link, target: "_blank", rel: "noopener", class: "block -mx-4 sm:mx-0 sm:rounded-lg bg-white dark:bg-stone-900 sm:shadow-sm overflow-hidden no-underline" do %>
       <% if has_map %>
-        <%= image_tag @brewery.map_mobile_light.attached? ? @brewery.map_mobile_light : @brewery.map_light, class: "w-full sm:hidden dark:hidden", alt: "Map of #{@brewery.name}", loading: "lazy" %>
-        <%= image_tag @brewery.map_mobile_dark.attached? ? @brewery.map_mobile_dark : @brewery.map_dark, class: "w-full sm:hidden hidden dark:block", alt: "Map of #{@brewery.name}", loading: "lazy" %>
-        <%= image_tag @brewery.map_light, class: "w-full hidden sm:block dark:sm:hidden", alt: "Map of #{@brewery.name}", loading: "lazy" %>
-        <%= image_tag @brewery.map_dark, class: "w-full hidden dark:sm:block", alt: "Map of #{@brewery.name}", loading: "lazy" %>
+        <%= image_tag @brewery.map_mobile_light.attached? ? @brewery.map_mobile_light : @brewery.map_light, class: "w-full aspect-[8/3] object-cover bg-stone-100 dark:bg-stone-800 shimmer sm:hidden dark:hidden", alt: "Map of #{@brewery.name}", loading: "lazy" %>
+        <%= image_tag @brewery.map_mobile_dark.attached? ? @brewery.map_mobile_dark : @brewery.map_dark, class: "w-full aspect-[8/3] object-cover bg-stone-100 dark:bg-stone-800 shimmer sm:hidden hidden dark:block", alt: "Map of #{@brewery.name}", loading: "lazy" %>
+        <%= image_tag @brewery.map_light, class: "w-full aspect-[8/3] object-cover bg-stone-100 dark:bg-stone-800 shimmer hidden sm:block dark:sm:hidden", alt: "Map of #{@brewery.name}", loading: "lazy" %>
+        <%= image_tag @brewery.map_dark, class: "w-full aspect-[8/3] object-cover bg-stone-100 dark:bg-stone-800 shimmer hidden dark:sm:block", alt: "Map of #{@brewery.name}", loading: "lazy" %>
       <% end %>
       <% if @brewery.street.present? %>
         <div class="flex items-start gap-3 px-4 sm:p-4 py-3">
