@@ -10,7 +10,7 @@ GIT
 PATH
   remote: /Users/joemasilotti/workspace/projects/purchasekit/gem
   specs:
-    purchasekit (0.6.0)
+    purchasekit (0.6.1)
       httparty (~> 0.22)
       rails (>= 7.0, < 9)
 

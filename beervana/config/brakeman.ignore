@@ -1,0 +1,10 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "fe8f282e8b972d26c36d5959098d5f6a13536b0635c96fadabacc25639e7e5cc",
+      "note": "website_url is admin-seeded data, not user input"
+    }
+  ],
+  "updated": "2026-03-15",
+  "brakeman_version": "7.0.2"
+}

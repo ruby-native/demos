@@ -135,7 +135,7 @@ def precompute_neighborhoods
     center_lng = lngs.sum / lngs.size
 
     max_distance = breweries.map { |b|
-      [(b.latitude.to_f - center_lat).abs, (b.longitude.to_f - center_lng).abs].max
+      [ (b.latitude.to_f - center_lat).abs, (b.longitude.to_f - center_lng).abs ].max
     }.max
 
     zoom = if max_distance < 0.02
@@ -148,18 +148,18 @@ def precompute_neighborhoods
       11
     end
 
-    hash[neighborhood.id] = {center_lat: center_lat, center_lng: center_lng, zoom: zoom}
+    hash[neighborhood.id] = { center_lat: center_lat, center_lng: center_lng, zoom: zoom }
   end
 end
 
 def generate_maps_token(team_id, key_id, private_key)
-  header = {alg: "ES256", kid: key_id, typ: "JWT"}
-  payload = {iss: team_id, iat: Time.now.to_i, exp: 30.minutes.from_now.to_i}
+  header = { alg: "ES256", kid: key_id, typ: "JWT" }
+  payload = { iss: team_id, iat: Time.now.to_i, exp: 30.minutes.from_now.to_i }
   JWT.encode(payload, private_key, "ES256", header)
 end
 
 def single_pin(brewery)
-  [{point: "#{brewery.latitude},#{brewery.longitude}", color: "34a853", markerStyle: "balloon"}].to_json
+  [ { point: "#{brewery.latitude},#{brewery.longitude}", color: "34a853", markerStyle: "balloon" } ].to_json
 end
 
 def multi_pin(neighborhood)
@@ -175,12 +175,12 @@ def multi_pin(neighborhood)
     center_lng = lngs.sum / lngs.size
 
     breweries = breweries.sort_by { |b|
-      -[(b.latitude.to_f - center_lat).abs, (b.longitude.to_f - center_lng).abs].max
+      -[ (b.latitude.to_f - center_lat).abs, (b.longitude.to_f - center_lng).abs ].max
     }.first(10)
   end
 
   breweries.map { |b|
-    {point: "#{b.latitude},#{b.longitude}", color: "34a853", markerStyle: "dot"}
+    { point: "#{b.latitude},#{b.longitude}", color: "34a853", markerStyle: "dot" }
   }.to_json
 end
 

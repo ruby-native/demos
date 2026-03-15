@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  resources :neighborhoods, only: [:index, :show]
-  resources :breweries, only: [:index, :show] do
-    resource :stamp, only: [:create, :destroy]
-    resource :bookmark, only: [:create, :destroy]
+  resources :neighborhoods, only: [ :index, :show ]
+  resources :breweries, only: [ :index, :show ] do
+    resource :stamp, only: [ :create, :destroy ]
+    resource :bookmark, only: [ :create, :destroy ]
   end
 
-  resource :session, only: [:new, :destroy]
-  resource :passport, only: [:show]
-  resource :profile, only: [:show, :destroy]
+  resource :session, only: [ :new, :destroy ]
+  resource :passport, only: [ :show ]
+  resource :profile, only: [ :show, :destroy ]
 
   get "/auth/:provider", to: redirect("/session/new")
   get "/auth/:provider/callback", to: "omniauth_callbacks#create"

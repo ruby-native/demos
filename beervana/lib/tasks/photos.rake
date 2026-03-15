@@ -91,7 +91,7 @@ def fetch_photo_info(place_id, api_key)
   return nil unless photo
 
   attribution = photo.dig("authorAttributions", 0, "displayName")
-  {name: photo["name"], attribution: attribution}
+  { name: photo["name"], attribution: attribution }
 end
 
 def download_photo(photo_name, api_key)

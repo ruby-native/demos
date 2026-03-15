@@ -2,7 +2,7 @@ class AppleClientSecret
   def self.generate(credentials)
     key = OpenSSL::PKey::EC.new(credentials[:private_key])
 
-    headers = {kid: credentials[:key_id]}
+    headers = { kid: credentials[:key_id] }
     claims = {
       iss: credentials[:team_id],
       iat: Time.now.to_i,
