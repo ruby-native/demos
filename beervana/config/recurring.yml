@@ -10,6 +10,9 @@
 #     schedule: at 5am every day
 
 production:
+  backup_database:
+    class: BackupDatabaseJob
+    schedule: at 4am every day
   sync_breweries:
     class: SyncBreweriesJob
     schedule: at 3pm every day
