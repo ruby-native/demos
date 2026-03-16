@@ -69,7 +69,7 @@ jobs:
           working-directory: beervana
 
       - name: Prepare RuboCop cache
-        uses: actions/cache@v6
+        uses: actions/cache@v4
         env:
           DEPENDENCIES_HASH: ${{ hashFiles('beervana/.ruby-version', 'beervana/**/.rubocop.yml', 'beervana/**/.rubocop_todo.yml', 'beervana/Gemfile.lock') }}
         with:
