@@ -25,3 +25,13 @@ tabs:
   - title: Account
     path: /account
     icon: person
+
+screenshots:
+  paths:
+    - /menu
+    - /orders
+    - /rewards
+    - /account
+
+ruby_native:
+  app_id: app_f3rgewxy
