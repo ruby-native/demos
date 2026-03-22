@@ -41,3 +41,6 @@
 /config/credentials/*.key
 /config/credentials/development.yml.enc
 
+
+# Ruby Native
+.ruby_native/

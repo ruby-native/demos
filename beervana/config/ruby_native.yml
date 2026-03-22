@@ -24,3 +24,12 @@ tabs:
   - title: Profile
     path: /profile
     icon: person
+
+screenshots:
+  paths:
+    - /explore
+    - /passport
+    - /profile
+
+ruby_native:
+  app_id: app_9ep36xdj
