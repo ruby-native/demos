@@ -1,6 +1,14 @@
 # Demo apps
 
-Four Rails apps demonstrating the `ruby_native` gem with different frontend frameworks.
+Five Rails apps demonstrating the `ruby_native` gem with different frontend frameworks.
+
+## Beervana demo (`beervana/`)
+
+A Portland brewery passport app. Track visits, explore neighborhoods, and discover new breweries.
+
+- **Stack:** Rails, Hotwire, Tailwind CSS
+- **Production:** [beervana.app](https://beervana.app)
+- **App Store:** [Beervana on the App Store](https://apps.apple.com/us/app/beervana-pdx-brewery-passport/id6760509246)
 
 ## Turbo demo (`turbo/`)
 
