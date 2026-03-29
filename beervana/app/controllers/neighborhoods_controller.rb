@@ -8,6 +8,8 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
-    @breweries = @neighborhood.breweries.ordered
+    breweries = @neighborhood.breweries.ordered.to_a
+    @free_breweries = breweries.first(3)
+    @locked_breweries = breweries.drop(3)
   end
 end

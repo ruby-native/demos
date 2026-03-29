@@ -4,6 +4,11 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_breweries, through: :bookmarks, source: :brewery
   has_many :push_devices, class_name: "ApplicationPushDevice", as: :owner, dependent: :destroy
+  has_one :subscription, dependent: :destroy
+
+  def subscribed?
+    subscription&.active? || false
+  end
 
   before_destroy :revoke_apple_token
 

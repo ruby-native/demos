@@ -21,7 +21,7 @@ gem "omniauth"
 gem "omniauth-apple"
 gem "omniauth-rails_csrf_protection"
 
-gem "ruby_native", github: "ruby-native/gem", branch: "main"
+gem "ruby_native", path: "../../gem"
 gem "action_push_native"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

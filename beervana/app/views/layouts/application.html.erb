@@ -14,7 +14,9 @@
   <body class="h-full bg-surface dark:bg-surface-dark text-stone-900 dark:text-stone-100">
     <%= native_tabs_tag(enabled: user_signed_in? || params[:app] == "review") %>
     <%= native_push_tag if user_signed_in? %>
-    <%= render "shared/navbar" unless native_app? %>
+    <%# TODO: Resolve next two lines before deploy. %>
+    <%# render "shared/navbar" unless native_app? %>
+    <%= render "shared/navbar" %>
 
       <main class="max-w-2xl mx-auto px-4 pb-8 native-inset <%= "pt-14" unless native_app? %>">
       <%= render "shared/flash" %>

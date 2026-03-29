@@ -6,8 +6,20 @@
   <% end %>
 
   <div class="mt-4 space-y-5">
-    <% @breweries.each do |brewery| %>
+    <% @free_breweries.each do |brewery| %>
       <%= render "breweries/brewery_card", brewery: brewery %>
     <% end %>
   </div>
+
+  <% if current_user&.subscribed? %>
+    <div class="mt-5 space-y-5">
+      <% @locked_breweries.each do |brewery| %>
+        <%= render "breweries/brewery_card", brewery: brewery %>
+      <% end %>
+    </div>
+  <% elsif @locked_breweries.any? %>
+    <%= render "breweries/locked_list",
+      breweries: @locked_breweries,
+      message: "See all #{@free_breweries.size + @locked_breweries.size} breweries in #{@neighborhood.name}." %>
+  <% end %>
 </div>

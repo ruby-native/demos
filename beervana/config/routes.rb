@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resource :session, only: [ :new, :destroy ] do
     get :dev, on: :collection, to: "sessions#dev" if Rails.env.development? || Rails.env.test?
   end
-  resource :passport, only: [ :show ]
+  resource :passport, only: [ :show ] do
+    get :progress
+  end
   resource :profile, only: [ :show, :destroy ]
 
   get "/auth/:provider", to: redirect("/session/new")

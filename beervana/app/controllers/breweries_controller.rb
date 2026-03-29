@@ -2,7 +2,10 @@ class BreweriesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @breweries = Brewery.visible.ordered
+    breweries = Brewery.visible.ordered.to_a
+    @free_breweries = breweries.first(3)
+    @locked_breweries = breweries.drop(3)
+    @total_count = breweries.size
   end
 
   def show

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_15_223047) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_25_010002) do
   create_table "action_push_native_devices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -96,6 +96,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_15_223047) do
     t.index ["name"], name: "index_neighborhoods_on_name", unique: true
   end
 
+  create_table "ruby_native_purchase_intents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "customer_id", null: false
+    t.string "environment"
+    t.string "product_id"
+    t.string "status", default: "pending", null: false
+    t.string "success_path"
+    t.datetime "updated_at", null: false
+    t.string "uuid", null: false
+    t.index ["customer_id"], name: "index_ruby_native_purchase_intents_on_customer_id"
+    t.index ["uuid"], name: "index_ruby_native_purchase_intents_on_uuid", unique: true
+  end
+
   create_table "stamps", force: :cascade do |t|
     t.integer "brewery_id", null: false
     t.datetime "created_at", null: false
@@ -105,6 +118,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_15_223047) do
     t.index ["brewery_id"], name: "index_stamps_on_brewery_id"
     t.index ["user_id", "brewery_id"], name: "index_stamps_on_user_id_and_brewery_id", unique: true
     t.index ["user_id"], name: "index_stamps_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "expires_at"
+    t.string "original_transaction_id"
+    t.string "product_id"
+    t.string "status", default: "active", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["original_transaction_id"], name: "index_subscriptions_on_original_transaction_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,4 +149,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_15_223047) do
   add_foreign_key "breweries", "neighborhoods"
   add_foreign_key "stamps", "breweries"
   add_foreign_key "stamps", "users"
+  add_foreign_key "subscriptions", "users"
 end

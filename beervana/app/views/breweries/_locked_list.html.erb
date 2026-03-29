@@ -1,0 +1,30 @@
+<%# locals: (breweries:, message:) %>
+<div class="relative mt-5">
+  <div class="space-y-5 blur-[6px] select-none pointer-events-none" aria-hidden="true">
+    <% breweries.first(3).each do |brewery| %>
+      <%= render "breweries/brewery_card", brewery: brewery %>
+    <% end %>
+  </div>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="text-center bg-white/90 dark:bg-stone-900/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg mx-8">
+      <h3 class="text-lg font-bold">Unlock all breweries</h3>
+      <p class="mt-1 text-sm text-stone-500 dark:text-stone-400">
+        <%= message %>
+      </p>
+      <% if native_app? && user_signed_in? %>
+        <button data-native-purchase="app.beervana.pro.annual"
+                data-customer-id="<%= current_user.id %>"
+                data-success-path="<%= request.path %>"
+                class="mt-4 rounded-xl bg-brew-800 dark:bg-brew-200 text-white dark:text-stone-900 font-semibold px-8 py-3 text-sm">
+          Upgrade - <span data-native-price="com.beervana.annual">$0.99/year</span>
+        </button>
+      <% elsif native_app? %>
+        <%= link_to "Upgrade - $0.99/year", new_session_path,
+          class: "mt-4 inline-block rounded-xl bg-brew-800 dark:bg-brew-200 text-white dark:text-stone-900 font-semibold px-8 py-3 text-sm no-underline" %>
+      <% else %>
+        <%= link_to "Upgrade in the iOS app", "https://apps.apple.com/us/app/beervana-pdx-brewery-passport/id6760509246",
+          class: "mt-4 inline-block rounded-xl bg-brew-800 dark:bg-brew-200 text-white dark:text-stone-900 font-semibold px-8 py-3 text-sm no-underline" %>
+      <% end %>
+    </div>
+  </div>
+</div>
