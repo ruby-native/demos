@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Ruby-Native/gem.git
-  revision: 68802d1c8ce41ad57471f254270b1775587dd207
+  revision: 0f340ac998d606ddff8795160fa0a0d6b2112c5b
   branch: main
   specs:
     ruby_native (0.3.2)

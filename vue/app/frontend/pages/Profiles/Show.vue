@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link, router, usePage } from "@inertiajs/vue3"
 import { computed } from "vue"
-import { NativeNavbar, NativeButton, NativeMenuItem, useNativeButton } from "ruby_native/vue"
+import { NativeNavbar, NativeButton, NativeMenuItem } from "ruby_native/vue"
 
 const page = usePage()
 const nativeApp = computed(() => page.props.nativeApp)
@@ -9,16 +9,6 @@ const nativeApp = computed(() => page.props.nativeApp)
 defineProps({
   user: Object,
 })
-
-function handleMenuAction(value) {
-  if (value === "edit") {
-    router.visit("/profile/edit")
-  } else if (value === "sign-out") {
-    router.delete("/session")
-  }
-}
-
-useNativeButton("profile-menu", handleMenuAction)
 
 function handleSignOut() {
   router.delete("/session")
@@ -28,9 +18,9 @@ function handleSignOut() {
 <template>
   <Head title="Profile" />
   <NativeNavbar title="Profile">
-    <NativeButton position="leading" icon="ellipsis.circle" action="profile-menu">
-      <NativeMenuItem title="Edit profile" value="edit" icon="pencil" />
-      <NativeMenuItem title="Sign out" value="sign-out" icon="rectangle.portrait.and.arrow.right" />
+    <NativeButton position="leading" icon="ellipsis.circle">
+      <NativeMenuItem title="Edit profile" href="/profile/edit" icon="pencil" />
+      <NativeMenuItem title="Sign out" click="#sign-out-button" icon="rectangle.portrait.and.arrow.right" />
     </NativeButton>
   </NativeNavbar>
   <div class="px-4 pt-6">
@@ -46,7 +36,7 @@ function handleSignOut() {
       </div>
     </div>
 
-    <div v-if="!nativeApp" class="mt-8 space-y-3">
+    <div :class="nativeApp ? 'native-hidden' : 'mt-8 space-y-3'">
       <Link
         href="/profile/edit"
         class="block w-full text-center bg-indigo-600 text-white rounded-lg px-4 py-2.5 font-medium hover:bg-indigo-700 transition-colors"
@@ -54,6 +44,7 @@ function handleSignOut() {
         Edit profile
       </Link>
       <button
+        id="sign-out-button"
         @click="handleSignOut"
         class="w-full text-red-600 text-sm font-medium py-2 hover:text-red-700 transition-colors"
       >
