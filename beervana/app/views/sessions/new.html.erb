@@ -4,7 +4,7 @@
   <h1 class="text-3xl font-bold">Beervana</h1>
   <p class="mt-2 text-stone-500 dark:text-stone-400">Your Portland brewery passport.</p>
 
-  <div class="mt-8">
+  <div class="mt-8 space-y-3">
     <% if native_app? %>
       <%= link_to "/auth/apple", class: "block w-full rounded-xl bg-black dark:bg-white text-white dark:text-black font-semibold py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition text-center no-underline" do %>
         Sign in with Apple
@@ -13,6 +13,10 @@
       <%= button_to "/auth/apple", data: {turbo: false}, class: "w-full rounded-xl bg-black dark:bg-white text-white dark:text-black font-semibold py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition cursor-pointer" do %>
         Sign in with Apple
       <% end %>
+    <% end %>
+
+    <% if Rails.env.development? || Rails.env.test? %>
+      <%= link_to "Sign in as demo user", dev_session_path, class: "block w-full rounded-xl bg-stone-200 dark:bg-stone-700 text-stone-800 dark:text-stone-200 font-semibold py-3 text-center no-underline hover:bg-stone-300 dark:hover:bg-stone-600 transition" %>
     <% end %>
   </div>
 </div>

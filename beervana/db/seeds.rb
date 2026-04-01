@@ -1,3 +1,10 @@
+# Dev user for local testing and smoke tests.
+# The apple_uid matches what OmniAuth's developer provider sends (the email).
+User.find_or_create_by!(email: "demo@beervana.test") do |u|
+  u.apple_uid = "demo@beervana.test"
+  u.name = "Demo User"
+end
+
 # 10 Portland breweries across 2 neighborhoods, with full data.
 # No external API calls required.
 

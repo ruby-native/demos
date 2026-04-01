@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resource :bookmark, only: [ :create, :destroy ]
   end
 
-  resource :session, only: [ :new, :destroy ]
+  resource :session, only: [ :new, :destroy ] do
+    get :dev, on: :collection, to: "sessions#dev" if Rails.env.development? || Rails.env.test?
+  end
   resource :passport, only: [ :show ]
   resource :profile, only: [ :show, :destroy ]
 
