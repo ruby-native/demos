@@ -1,7 +1,5 @@
 app:
-  # TODO: Resolve next line before deploy.
-  # mode: advanced
-  mode: normal
+  mode: advanced
 
 auth:
   oauth_paths:
