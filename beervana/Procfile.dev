@@ -1,2 +1,2 @@
-web: bin/rails server -p 3004
+web: bin/rails server -p ${PORT:-3001}
 css: bin/rails tailwindcss:watch

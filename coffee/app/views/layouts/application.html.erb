@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html class="h-full">
+<html>
   <head>
     <title><%= content_for(:title) || "Daily Grind" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag :ruby_native, "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= vite_client_tag %>
+    <%= vite_react_refresh_tag %>
+    <%= vite_javascript_tag "inertia.jsx" %>
   </head>
 
-  <body class="h-full bg-cream dark:bg-cream-dark text-coffee-900 dark:text-coffee-100" data-controller="timezone">
-    <%= native_tabs_tag if user_signed_in? %>
-    <%= native_push_tag if user_signed_in? %>
-    <%= yield :native_signals %>
-    <%= render "shared/navbar" %>
-
-    <main class="max-w-[480px] mx-auto px-4 pb-8 <%= "pt-14" unless native_app? %>">
-      <%= render "shared/flash" %>
-      <%= yield %>
-    </main>
+  <body>
+    <%= yield %>
   </body>
 </html>

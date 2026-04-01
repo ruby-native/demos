@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_action :redirect_if_authenticated, only: :new
 
   def new
-    @page_title = "Sign in"
+    render inertia: "Sessions/New"
   end
 
   def create
@@ -11,9 +11,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to categories_path
     else
-      flash.now.alert = "Invalid email or password."
-      @page_title = "Sign in"
-      render :new, status: :unprocessable_entity
+      redirect_to new_session_path, alert: "Invalid email or password."
     end
   end
 

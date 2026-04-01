@@ -3,19 +3,17 @@ class RegistrationsController < ApplicationController
   before_action :redirect_if_authenticated, only: :new
 
   def new
-    @user = User.new
-    @page_title = "Create an account"
+    render inertia: "Registrations/New"
   end
 
   def create
-    @user = User.new(registration_params)
+    user = User.new(registration_params)
 
-    if @user.save
-      sign_in @user
+    if user.save
+      sign_in user
       redirect_to categories_path
     else
-      @page_title = "Create an account"
-      render :new, status: :unprocessable_entity
+      redirect_to new_registration_path, alert: user.errors.full_messages.join(", ")
     end
   end
 

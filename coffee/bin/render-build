@@ -4,4 +4,5 @@ set -o errexit
 gem install bundler --conservative
 bundle config set --local frozen false
 bundle update ruby_native --jobs 4
+npm install
 bundle exec rails assets:precompile

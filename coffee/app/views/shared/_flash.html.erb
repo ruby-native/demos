@@ -1,7 +1,0 @@
-<% flash.each do |type, message| %>
-  <% next if message.blank? %>
-  <div class="mb-4 p-3 rounded-xl text-sm
-    <%= type == "alert" ? "bg-red-50 text-red-800 dark:bg-red-900/30 dark:text-red-200" : "bg-green-50 text-green-800 dark:bg-green-900/30 dark:text-green-200" %>">
-    <%= message %>
-  </div>
-<% end %>

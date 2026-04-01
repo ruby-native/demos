@@ -1,2 +1,2 @@
-web: bin/rails server -p ${PORT:-3003}
-css: bin/rails tailwindcss:watch
+web: bin/rails server -p ${PORT:-3002}
+vite: bin/vite dev

@@ -1,2 +1,0 @@
-web: bin/rails server -p 3002
-vite: bin/vite dev

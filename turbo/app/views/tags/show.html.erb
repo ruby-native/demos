@@ -1,9 +1,0 @@
-<%= render "shared/header", title: @tag.name %>
-
-<% if @links.any? %>
-  <div class="container list-group list-group-flush px-0">
-    <%= render @links %>
-  </div>
-<% else %>
-  <p class="container">No links with this tag.</p>
-<% end %>
