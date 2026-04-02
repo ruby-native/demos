@@ -1,5 +1,5 @@
 import { Head, router, usePage } from "@inertiajs/react"
-import { NativeNavbar } from "ruby_native/react"
+import { NativeNavbar } from "ruby-native/react"
 
 export default function Show({ items, display_total, empty }) {
   const { nativeApp } = usePage().props

@@ -1,5 +1,5 @@
 import { Head, usePage } from "@inertiajs/react"
-import { NativeNavbar, NativeButton } from "ruby_native/react"
+import { NativeNavbar, NativeButton } from "ruby-native/react"
 
 export default function Show({ points, next_reward_at, progress, activities, rewards }) {
   const { nativeApp } = usePage().props

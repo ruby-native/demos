@@ -1,5 +1,5 @@
 import { Head, Link, usePage } from "@inertiajs/react"
-import { NativeNavbar, NativeButton } from "ruby_native/react"
+import { NativeNavbar, NativeButton } from "ruby-native/react"
 
 export default function Show({ category, products }) {
   const { nativeApp } = usePage().props

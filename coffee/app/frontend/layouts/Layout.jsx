@@ -1,5 +1,5 @@
 import { usePage } from "@inertiajs/react"
-import { NativeTabs, NativePush } from "ruby_native/react"
+import { NativeTabs, NativePush } from "ruby-native/react"
 import Navbar from "~/components/Navbar"
 import Flash from "~/components/Flash"
 

@@ -1,5 +1,5 @@
 import { Head, router, usePage } from "@inertiajs/react"
-import { NativeNavbar } from "ruby_native/react"
+import { NativeNavbar } from "ruby-native/react"
 import { useEffect } from "react"
 
 const STATUS_CARD_COLORS = {

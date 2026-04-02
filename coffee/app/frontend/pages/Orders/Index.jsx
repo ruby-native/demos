@@ -1,5 +1,5 @@
 import { Head, Link, usePage } from "@inertiajs/react"
-import { NativeNavbar, NativeButton } from "ruby_native/react"
+import { NativeNavbar, NativeButton } from "ruby-native/react"
 
 function StatusBadge({ status, label }) {
   const colors = {

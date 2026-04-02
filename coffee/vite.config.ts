@@ -21,6 +21,5 @@ export default defineConfig({
       "~": resolve(__dirname, "app/frontend"),
       "ruby_native": rubyNativeJsPath(),
     },
-    dedupe: ["react", "react-dom", "@inertiajs/react"],
   },
 })

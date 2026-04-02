@@ -1,5 +1,5 @@
 import { Head, useForm, usePage } from "@inertiajs/react"
-import { NativeNavbar, NativeSubmitButton, NativeForm } from "ruby_native/react"
+import { NativeNavbar, NativeSubmitButton, NativeForm } from "ruby-native/react"
 
 export default function Edit({ user, errors }) {
   const { nativeApp } = usePage().props

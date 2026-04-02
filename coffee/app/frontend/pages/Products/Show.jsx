@@ -1,5 +1,5 @@
 import { Head, router, usePage } from "@inertiajs/react"
-import { NativeNavbar, NativeButton, NativeForm } from "ruby_native/react"
+import { NativeNavbar, NativeButton, NativeForm } from "ruby-native/react"
 import { useState, useMemo } from "react"
 
 const SIZES = ["small", "medium", "large"]
