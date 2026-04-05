@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/Ruby-Native/gem.git
+  remote: https://github.com/ruby-native/gem.git
   revision: 9ad1ca1946feb9ee47fae3a3bdff4f7a79939140
   branch: main
   specs:
