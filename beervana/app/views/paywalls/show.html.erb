@@ -38,7 +38,10 @@
       Subscribe - <span data-native-price="<%= @product_id %>">$0.99/year</span>
     </button>
 
-    <button data-native-restore class="mt-3 text-sm text-brew-700 dark:text-brew-400 font-medium">
+    <button data-native-restore
+            data-customer-id="<%= current_user.id %>"
+            data-success-path="<%= explore_path %>"
+            class="mt-3 text-sm text-brew-700 dark:text-brew-400 font-medium">
       Restore purchase
     </button>
   </div>
