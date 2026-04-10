@@ -10,10 +10,10 @@ Three Rails apps demonstrating the `ruby_native` gem with different frontend fra
 
 ## Beervana demo (`beervana/`)
 
-A Portland brewery passport app. Track visits, explore neighborhoods, and discover new breweries. Advanced Mode with Stimulus bridge controllers via `@hotwired/hotwire-native-bridge`.
+A Portland brewery passport app. Track visits, explore neighborhoods, and discover new breweries. Advanced Mode for native push/pop screen transitions, with signal elements driving the tab bar, navigation bar, menus, and the profile edit form's submit button.
 
 - **Stack:** Rails, Hotwire, Tailwind CSS
-- **Mode:** Advanced (signal elements + bridge controllers)
+- **Mode:** Advanced (signal elements via ERB helpers)
 - **Production:** [beervana.app](https://beervana.app)
 - **App Store:** [Beervana on the App Store](https://apps.apple.com/us/app/beervana-pdx-brewery-passport/id6760509246)
 
