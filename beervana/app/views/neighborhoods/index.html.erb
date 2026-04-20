@@ -28,8 +28,8 @@
     <% @neighborhoods.sort_by(&:name).each do |neighborhood| %>
       <%= link_to neighborhood_path(neighborhood), class: "block rounded-2xl bg-white dark:bg-stone-900 shadow-sm no-underline overflow-hidden" do %>
         <% if neighborhood.map_light.attached? %>
-          <%= image_tag neighborhood.map_light, class: "w-full dark:hidden", alt: "Map of #{neighborhood.name}" %>
-          <%= image_tag neighborhood.map_dark, class: "w-full hidden dark:block", alt: "Map of #{neighborhood.name}" %>
+          <%= image_tag neighborhood.map_light, class: "w-full aspect-[8/3] object-cover bg-stone-100 dark:bg-stone-800 shimmer dark:hidden", alt: "Map of #{neighborhood.name}" %>
+          <%= image_tag neighborhood.map_dark, class: "w-full aspect-[8/3] object-cover bg-stone-100 dark:bg-stone-800 shimmer hidden dark:block", alt: "Map of #{neighborhood.name}" %>
         <% end %>
         <div class="flex items-center justify-between p-4">
           <div>
