@@ -41,7 +41,7 @@ export default function Index({ active_orders, past_orders }) {
     <>
       <Head title="Orders" />
       <NativeNavbar title="Orders">
-        <NativeButton icon="bag" href="/cart" />
+        <NativeButton icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
       </NativeNavbar>
 
       <div className="mt-4">

@@ -8,7 +8,7 @@ export default function Show({ points, next_reward_at, progress, activities, rew
     <>
       <Head title="Rewards" />
       <NativeNavbar title="Rewards">
-        <NativeButton icon="bag" href="/cart" />
+        <NativeButton icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
       </NativeNavbar>
 
       <div className="mt-4">

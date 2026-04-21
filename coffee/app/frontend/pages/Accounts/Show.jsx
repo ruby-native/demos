@@ -12,9 +12,9 @@ export default function Show({ user }) {
     <>
       <Head title="Account" />
       <NativeNavbar title="Account">
-        <NativeButton icon="ellipsis.circle">
-          <NativeMenuItem title="Edit profile" href="/account/edit" icon="pencil" />
-          <NativeMenuItem title="Sign out" click="#sign-out" icon="rectangle.portrait.and.arrow.right" />
+        <NativeButton icons={{ ios: "ellipsis.circle", android: "more_vert" }}>
+          <NativeMenuItem title="Edit profile" href="/account/edit" icons={{ ios: "pencil", android: "edit" }} />
+          <NativeMenuItem title="Sign out" click="#sign-out" icons={{ ios: "rectangle.portrait.and.arrow.right", android: "logout" }} />
         </NativeButton>
       </NativeNavbar>
 

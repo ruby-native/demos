@@ -12,10 +12,14 @@ appearance:
 tabs:
   - title: Menu
     path: /menu
-    icon: cup.and.saucer
+    icons:
+      ios: cup.and.saucer
+      android: coffee
   - title: Orders
     path: /orders
-    icon: bag
+    icons:
+      ios: bag
+      android: shopping_bag
   - title: Rewards
     path: /rewards
     icon: star
