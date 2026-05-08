@@ -6,11 +6,11 @@
   <% end %>
 
   <%= native_navbar_tag do |navbar| %>
-    <% navbar.button "Menu", icon: "line.3.horizontal", position: "leading" do |menu| %>
+    <% navbar.button "Menu", icons: { ios: "line.3.horizontal", android: "menu" }, position: "leading" do |menu| %>
       <% menu.item "Sign out", click: "#sign-out-button" %>
       <% menu.item "Delete account", click: "#delete-account-button" %>
     <% end %>
-    <% navbar.button "Edit", icon: "pencil", href: edit_profile_path %>
+    <% navbar.button "Edit", icons: { ios: "pencil", android: "edit" }, href: edit_profile_path %>
   <% end %>
 
   <div class="mt-4 p-4 rounded-2xl bg-white dark:bg-stone-900 shadow-sm">

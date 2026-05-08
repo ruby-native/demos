@@ -14,17 +14,23 @@ appearance:
 tabs:
   - title: Explore
     path: /explore
-    icon: binoculars
+    icons:
+      ios: binoculars
+      android: travel_explore
     auto_route:
       - /explore
       - /breweries/
       - /neighborhoods/
   - title: Passport
     path: /passport
-    icon: wallet.bifold
+    icons:
+      ios: wallet.bifold
+      android: account_balance_wallet
   - title: Profile
     path: /profile
-    icon: person
+    icons:
+      ios: person
+      android: person
 
 screenshots:
   paths:
