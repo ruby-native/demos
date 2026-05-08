@@ -15,7 +15,7 @@ gem "inertia_rails"
 gem "vite_rails"
 
 # Native bridge.
-gem "ruby_native", github: "Ruby-Native/gem", branch: "android"
+gem "ruby_native", github: "Ruby-Native/gem", branch: "main"
 
 # OAuth.
 gem "omniauth"
