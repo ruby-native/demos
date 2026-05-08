@@ -8,7 +8,7 @@ export default function Index({ categories }) {
     <>
       <Head title="Menu" />
       <NativeNavbar title="Menu">
-        <NativeButton icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
+        <NativeButton icon="bag" icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
       </NativeNavbar>
 
       <div className="mt-4">

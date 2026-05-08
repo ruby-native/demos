@@ -8,7 +8,7 @@ export default function Show({ category, products }) {
     <>
       <Head title={category.name} />
       <NativeNavbar title={category.name}>
-        <NativeButton icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
+        <NativeButton icon="bag" icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
       </NativeNavbar>
 
       <div className="mt-4">

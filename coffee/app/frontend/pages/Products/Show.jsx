@@ -44,7 +44,7 @@ export default function Show({ product, size_adjustments, extras }) {
     <>
       <Head title={product.name} />
       <NativeNavbar title={product.name}>
-        <NativeButton icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
+        <NativeButton icon="bag" icons={{ ios: "bag", android: "shopping_bag" }} href="/cart" />
       </NativeNavbar>
       <NativeForm />
 
