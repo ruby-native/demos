@@ -1,5 +1,10 @@
 <% content_for :title, @brewery.name %>
 
+<%# Ask for an App Store review when a signed-in user revisits a brewery
+    they've already stamped. A genuine "good moment"; Apple throttles how
+    often the prompt actually appears. %>
+<%= native_review_tag if @stamp %>
+
 <%# Hero photo %>
 <% if @brewery.photo.attached? %>
   <div class="-mx-4 sm:mx-0 <%= native_app? ? 'mt-2' : '-mt-4' %>">
