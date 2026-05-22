@@ -6,7 +6,7 @@
     <% menu.item "Sort by created",  href: inbox_path(sort: "created"), icon: "clock",    selected: @sort == "created" %>
   <% end %>
 <% end %>
-<%= native_fab_tag(icon: "plus", href: new_todo_path) %>
+<%= native_fab_tag(icons: { ios: "plus", android: "add" }, href: new_todo_path) %>
 <%= web_fab(href: new_todo_path, label: "New todo") %>
 <%= native_badge_tag(tab: @todos.size) %>
 

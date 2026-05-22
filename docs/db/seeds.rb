@@ -11,7 +11,7 @@ user.todos.destroy_all
 
 today = Date.current
 
-next_round_hour = Time.current.change(min: 0, sec: 0) + 1.hour
+next_round_hour = [ Time.current.change(min: 0, sec: 0) + 1.hour, today.end_of_day - 2.hours ].min
 buy_milk_due    = [ today.beginning_of_day + 18.hours, next_round_hour ].max
 dentist_due     = [ today.beginning_of_day + 20.hours, buy_milk_due + 2.hours ].max
 
