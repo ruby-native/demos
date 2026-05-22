@@ -23,7 +23,6 @@ module ApplicationHelper
 
   def due_chip(due_at)
     return "" unless due_at
-    overdue = due_at < Time.current
     label =
       if due_at.to_date == Date.current
         due_at.strftime("%-l:%M %p")
@@ -32,7 +31,7 @@ module ApplicationHelper
       else
         due_at.strftime("%b %-d")
       end
-    content_tag(:span, label, class: "due-chip #{'overdue' if overdue}".strip)
+    content_tag(:span, label, class: "due-chip")
   end
 
   def initials(value)

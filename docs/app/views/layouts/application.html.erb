@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <%= native_tabs_tag if authenticated? %>
+    <%= native_tabs_tag if authenticated? && !content_for?(:hide_native_tabs) %>
 
     <main class="page native-inset">
       <%= yield %>

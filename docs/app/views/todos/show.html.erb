@@ -1,7 +1,8 @@
 <% content_for :title, @todo.title %>
+<% content_for :hide_native_tabs, true %>
 
 <%= native_navbar_tag(@todo.title) do |navbar| %>
-  <% navbar.button icon: "pencil", href: edit_todo_path(@todo) %>
+  <% navbar.button icon: "pencil", icons: { android: "edit" }, href: edit_todo_path(@todo) %>
 <% end %>
 
 <div class="detail">

@@ -11,13 +11,19 @@ tabs:
   - title: Today
     path: /today
     icon: sun.max
+    icons:
+      android: wb_sunny
   - title: Inbox
     path: /inbox
     icon: tray
+    icons:
+      android: inbox
     badge: true
   - title: Done
     path: /done
     icon: checkmark.circle
+    icons:
+      android: check_circle
   - title: Profile
     path: /profile
     icon: person

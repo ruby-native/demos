@@ -1,9 +1,9 @@
 <% content_for :title, "Profile" %>
 
 <%= native_navbar_tag("Profile") do |navbar| %>
-  <% navbar.button icon: "ellipsis.circle" do |menu| %>
-    <% menu.item "Edit profile", href: edit_profile_path, icon: "pencil" %>
-    <% menu.item "Sign out", click: "#sign-out-button", icon: "rectangle.portrait.and.arrow.right" %>
+  <% navbar.button icon: "ellipsis.circle", icons: { android: "more_vert" } do |menu| %>
+    <% menu.item "Edit profile", href: edit_profile_path, icon: "pencil", icons: { android: "edit" } %>
+    <% menu.item "Sign out", click: "#sign-out-button", icon: "rectangle.portrait.and.arrow.right", icons: { android: "logout" } %>
   <% end %>
 <% end %>
 <%= native_badge_tag(tab: Current.user.todos.pending.count) %>
