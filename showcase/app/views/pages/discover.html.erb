@@ -1,0 +1,23 @@
+<% content_for :title, "Discover" %>
+
+<section class="pt-6">
+  <%= render "shared/section_label", text: "Staff picks" %>
+  <ul role="list" class="px-5 space-y-4">
+    <% Current.user.books.where(status: :want_to_read).limit(6).each_with_index do |book, i| %>
+      <li>
+        <%= link_to book, class: "flex gap-4 active:opacity-70 transition-opacity" do %>
+          <%= render "books/cover", book: book, size: :sm %>
+          <div class="flex-1 min-w-0 self-center">
+            <p class="text-[0.6875rem] font-semibold tracking-wider uppercase text-accent-700"><%= "0#{i + 1}" %></p>
+            <p class="font-display text-lg font-semibold leading-snug text-stone-900 mt-0.5 line-clamp-1"><%= book.title %></p>
+            <p class="text-[0.9375rem] text-stone-500 truncate"><%= book.author %></p>
+            <p class="text-[0.875rem] text-stone-600 mt-2 line-clamp-2 leading-snug">A staff pick for your shelf this season.</p>
+          </div>
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 self-center text-stone-300">
+            <path d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z"/>
+          </svg>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</section>

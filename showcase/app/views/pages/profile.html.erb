@@ -1,0 +1,61 @@
+<% content_for :title, "Profile" %>
+
+<div class="px-5 pt-6">
+  <div class="flex items-center gap-4 p-4 rounded-2xl bg-white ring-1 ring-stone-950/5">
+    <div class="size-14 rounded-full bg-accent-100 flex items-center justify-center font-display text-2xl font-semibold text-accent-800" aria-hidden="true">
+      <%= @user.email_address.first.upcase %>
+    </div>
+    <div class="flex-1 min-w-0">
+      <p class="text-[0.8125rem] text-stone-500">Signed in as</p>
+      <p class="text-[0.9375rem] font-medium text-stone-900 truncate"><%= @user.email_address %></p>
+    </div>
+  </div>
+</div>
+
+<section class="mt-8">
+  <%= render "shared/section_label", text: "Settings" %>
+  <ul role="list" class="mx-5 rounded-2xl bg-white ring-1 ring-stone-950/5 divide-y divide-stone-950/5">
+    <li>
+      <button type="button" class="flex w-full items-center gap-4 px-4 py-4 text-left active:bg-stone-50 rounded-t-2xl transition-colors">
+        <span class="inline-flex size-9 items-center justify-center rounded-lg bg-stone-100 text-stone-700 shrink-0" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="currentColor" class="size-5"><path d="M10 2a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 4.343a.75.75 0 0 1 0 1.06l-.707.708a.75.75 0 1 1-1.06-1.06l.707-.707a.75.75 0 0 1 1.06 0ZM6.111 13.889a.75.75 0 0 1 0 1.06l-.708.707a.75.75 0 1 1-1.06-1.06l.707-.707a.75.75 0 0 1 1.06 0ZM18 10a.75.75 0 0 1-.75.75h-1a.75.75 0 0 1 0-1.5h1A.75.75 0 0 1 18 10ZM4.5 10a.75.75 0 0 1-.75.75h-1a.75.75 0 0 1 0-1.5h1A.75.75 0 0 1 4.5 10ZM15.657 15.657a.75.75 0 0 1-1.06 0l-.708-.707a.75.75 0 1 1 1.06-1.06l.708.706a.75.75 0 0 1 0 1.06ZM6.11 6.11a.75.75 0 0 1-1.06 0l-.708-.706a.75.75 0 0 1 1.06-1.06l.708.706a.75.75 0 0 1 0 1.06Z"/></svg>
+        </span>
+        <span class="flex-1">
+          <span class="block text-[0.9375rem] font-medium text-stone-900">Appearance</span>
+          <span class="block text-[0.8125rem] text-stone-500">Match system</span>
+        </span>
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 text-stone-300">
+          <path d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z"/>
+        </svg>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="flex w-full items-center gap-4 px-4 py-4 text-left active:bg-stone-50 rounded-b-2xl transition-colors">
+        <span class="inline-flex size-9 items-center justify-center rounded-lg bg-stone-100 text-stone-700 shrink-0" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="currentColor" class="size-5"><path d="M10 2a6 6 0 0 0-6 6c0 2.29-.86 4.39-2.27 5.97A1 1 0 0 0 2.5 16h15a1 1 0 0 0 .77-1.63A8.96 8.96 0 0 1 16 8a6 6 0 0 0-6-6ZM8 17a2 2 0 1 0 4 0H8Z"/></svg>
+        </span>
+        <span class="flex-1">
+          <span class="block text-[0.9375rem] font-medium text-stone-900">Notifications</span>
+          <span class="block text-[0.8125rem] text-stone-500">Off</span>
+        </span>
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 text-stone-300">
+          <path d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z"/>
+        </svg>
+      </button>
+    </li>
+  </ul>
+</section>
+
+<section class="mt-8">
+  <%= render "shared/section_label", text: "Account" %>
+  <div class="mx-5">
+    <%= button_to session_path,
+          method: :delete,
+          form: { class: "block" },
+          class: "w-full rounded-2xl bg-white ring-1 ring-stone-950/5 py-4 px-4 text-[0.9375rem] font-semibold text-red-600 active:bg-stone-50 transition-colors cursor-pointer",
+          data: { turbo_confirm: "Sign out of Shelf?" } do %>
+      Sign out
+    <% end %>
+    <p class="mt-4 text-center text-[0.8125rem] text-stone-400">Shelf 1.0</p>
+  </div>
+</section>

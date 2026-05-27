@@ -1,0 +1,5 @@
+<% flash.each do |type, message| %>
+  <div class="mx-5 mt-4 rounded-xl px-4 py-3 text-[0.9375rem] font-medium ring-1 <%= type.to_s == 'alert' ? 'bg-red-50 text-red-900 ring-red-200' : 'bg-accent-50 text-accent-900 ring-accent-200' %>">
+    <%= message %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<%
+  classes = case size
+            when :sm   then "w-[60px] h-[90px] rounded-sm"
+            when :grid then "w-full aspect-2/3 rounded-md"
+            when :lg   then "w-40 aspect-2/3 rounded-md mx-auto"
+            end
+  src = if book.cover.attached?
+          url_for(book.cover)
+        elsif book.isbn.present?
+          image_path("covers/#{book.isbn}.jpg")
+        else
+          book.cover_url
+        end
+%>
+<div class="<%= classes %> overflow-hidden bg-stone-200 shadow-cover ring-1 ring-stone-950/5">
+  <% if src.present? %>
+    <img src="<%= src %>" alt="<%= book.title %>" class="size-full object-cover" loading="lazy">
+  <% else %>
+    <div class="size-full flex items-center justify-center text-stone-500 text-[0.6875rem] px-2 text-center font-display">
+      <%= book.title %>
+    </div>
+  <% end %>
+</div>

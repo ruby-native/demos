@@ -1,0 +1,91 @@
+<% content_for :title, @book.title %>
+
+<%
+  status_styles =
+    case @book.status
+    when "currently_reading" then { ring: "ring-accent-200",  bg: "bg-accent-50",  fg: "text-accent-800" }
+    when "finished"          then { ring: "ring-emerald-200", bg: "bg-emerald-50", fg: "text-emerald-800" }
+    else                          { ring: "ring-stone-200",   bg: "bg-stone-100",  fg: "text-stone-700" }
+    end
+  status_icon =
+    case @book.status
+    when "currently_reading" then '<path fill-rule="evenodd" d="M10 2c-2.4-.9-5.3-1.4-7.5-1.4A.75.75 0 0 0 1.75 1.4v12.5c0 .4.3.7.7.75 2 .05 4.8.5 7.05 1.3a1.6 1.6 0 0 0 1 0c2.25-.8 5.05-1.25 7.05-1.3a.75.75 0 0 0 .7-.75V1.4a.75.75 0 0 0-.75-.8c-2.2 0-5.1.5-7.5 1.4Z" clip-rule="evenodd"/>'
+    when "finished"          then '<path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.85-10.85a.75.75 0 0 0-1.2-.9l-3.65 4.86-1.69-1.7a.75.75 0 0 0-1.06 1.07l2.3 2.3a.75.75 0 0 0 1.13-.09l4.17-5.54Z" clip-rule="evenodd"/>'
+    else                          '<path fill-rule="evenodd" d="M5 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v13.6a.5.5 0 0 1-.74.43L10 15.42l-4.26 2.61A.5.5 0 0 1 5 17.6V4Z" clip-rule="evenodd"/>'
+    end
+%>
+
+<section class="px-5 pt-6">
+  <%= render "books/cover", book: @book, size: :lg %>
+
+  <h1 class="font-display text-[1.875rem]/[1.1] font-semibold tracking-tight text-center mt-7 text-balance text-stone-900"><%= @book.title %></h1>
+  <p class="text-[1.0625rem] text-stone-500 text-center mt-2"><%= @book.author %></p>
+
+  <div class="mt-5 flex justify-center">
+    <span class="inline-flex items-center gap-1.5 rounded-full <%= status_styles[:bg] %> ring-1 <%= status_styles[:ring] %> px-3.5 py-1.5 text-[0.9375rem] font-semibold <%= status_styles[:fg] %>">
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4"><%== status_icon %></svg>
+      <%= @book.status_label %>
+    </span>
+  </div>
+</section>
+
+<% if @book.currently_reading? && @book.pages.to_i > 0 %>
+  <% pct = [(@book.current_page.to_f / @book.pages * 100).round, 100].min %>
+  <section class="px-5 mt-8">
+    <div class="rounded-2xl bg-white ring-1 ring-stone-950/5 p-5">
+      <div class="flex items-baseline justify-between gap-3">
+        <p class="font-display text-2xl font-semibold tabular-nums text-stone-900">Page <%= @book.current_page %></p>
+        <p class="text-[0.9375rem] text-stone-500 tabular-nums">of <%= @book.pages %></p>
+      </div>
+      <div class="mt-3 h-2 rounded-full bg-stone-200 overflow-hidden">
+        <div class="h-full rounded-full bg-accent-600 w-(--progress)" style="--progress: <%= pct %>%"></div>
+      </div>
+      <p class="mt-2 text-[0.8125rem] font-medium text-stone-500 tabular-nums"><%= pct %>% complete</p>
+    </div>
+  </section>
+<% end %>
+
+<%
+  stats = []
+  stats << ["Started",  @book.started_at.to_date.strftime("%b %-d, %Y")]   if @book.started_at.present?
+  stats << ["Finished", @book.finished_at.to_date.strftime("%b %-d, %Y")] if @book.finished_at.present?
+  stats << ["Pages",    @book.pages]                                       if @book.pages.to_i > 0
+  stats << ["ISBN",     @book.isbn]                                        if @book.isbn.present?
+%>
+<% if stats.any? %>
+  <section class="mt-8">
+    <%= render "shared/section_label", text: "Details" %>
+    <dl class="mx-5 grid grid-cols-2 rounded-2xl bg-white ring-1 ring-stone-950/5 divide-x divide-y divide-stone-950/5 [&>div:nth-child(-n+2)]:border-t-0 [&>div:nth-child(2n+1)]:border-l-0">
+      <% stats.each do |label, value| %>
+        <div class="p-4">
+          <dt class="text-[0.75rem] font-semibold tracking-wider uppercase text-stone-500"><%= label %></dt>
+          <dd class="mt-1.5 text-[0.9375rem] font-medium text-stone-900 tabular-nums"><%= value %></dd>
+        </div>
+      <% end %>
+    </dl>
+  </section>
+<% end %>
+
+<section class="mt-8">
+  <%= render "shared/section_label", text: "Notes" %>
+  <% if @notes.any? %>
+    <ul role="list" class="mx-5 space-y-3">
+      <% @notes.each do |note| %>
+        <li class="rounded-2xl bg-white ring-1 ring-stone-950/5 p-4">
+          <p class="text-[0.9375rem] text-stone-900 text-pretty leading-relaxed"><%= simple_format(note.body) %></p>
+          <p class="mt-2 text-[0.75rem] font-medium tracking-wider uppercase text-stone-400"><%= note.created_at.strftime("%b %-d, %Y") %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="mx-5 rounded-2xl border-2 border-dashed border-stone-300 bg-transparent p-6 text-center">
+      <p class="font-display text-base font-semibold text-stone-700">No notes yet</p>
+      <p class="mt-1 text-[0.875rem] text-stone-500 text-pretty">Capture a passage, a thought, or where you left off.</p>
+      <%= link_to new_book_note_path(@book),
+            class: "mt-4 inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-4 py-2 text-[0.875rem] font-semibold text-white active:scale-[0.98] transition" do %>
+        <svg viewBox="0 0 20 20" fill="currentColor" class="size-4" aria-hidden="true"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"/></svg>
+        Add a note
+      <% end %>
+    </div>
+  <% end %>
+</section>

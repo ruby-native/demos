@@ -1,0 +1,30 @@
+<% content_for :title, "Stats" %>
+
+<div class="px-5 pt-6">
+  <div class="rounded-3xl bg-accent-600 text-accent-50 p-6 ring-1 ring-accent-700/30 shadow-cover">
+    <p class="text-[0.8125rem] font-semibold tracking-wider uppercase text-accent-100">Finished this year</p>
+    <p class="font-display text-[5rem]/none font-semibold mt-3 tabular-nums text-white"><%= @finished_count %></p>
+  </div>
+</div>
+
+<section class="mt-8">
+  <%= render "shared/section_label", text: "By the numbers" %>
+  <ul role="list" class="mx-5 grid grid-cols-2 rounded-2xl bg-white ring-1 ring-stone-950/5 divide-x divide-y divide-stone-950/5 [&>li:nth-child(-n+2)]:border-t-0 [&>li:nth-child(2n+1)]:border-l-0">
+    <li class="p-5">
+      <p class="eyebrow">Reading</p>
+      <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @currently_reading_count %></p>
+    </li>
+    <li class="p-5">
+      <p class="eyebrow">To read</p>
+      <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @want_to_read_count %></p>
+    </li>
+    <li class="p-5">
+      <p class="eyebrow">Pages read</p>
+      <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= number_with_delimiter(@pages_read) %></p>
+    </li>
+    <li class="p-5">
+      <p class="eyebrow">Avg / book</p>
+      <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @finished_count.to_i > 0 ? number_with_delimiter((@pages_read.to_f / @finished_count).round) : "0" %></p>
+    </li>
+  </ul>
+</section>
