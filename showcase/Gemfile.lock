@@ -1,5 +1,7 @@
-PATH
-  remote: ../../gem
+GIT
+  remote: https://github.com/Ruby-Native/gem.git
+  revision: 5db8a94d3e76dc97f61940151b114537e5d7418b
+  branch: main
   specs:
     ruby_native (0.10.3)
       jwt (~> 2.0)
