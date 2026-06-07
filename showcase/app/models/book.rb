@@ -40,8 +40,8 @@ class Book < ApplicationRecord
   # reading the first time a page is logged.
   def log_progress(page)
     page = page.to_i
-    page = [page, pages].min if pages
-    self.current_page = [page, 0].max
+    page = [ page, pages ].min if pages
+    self.current_page = [ page, 0 ].max
     self.status = :currently_reading if want_to_read? && current_page.positive?
     save
   end

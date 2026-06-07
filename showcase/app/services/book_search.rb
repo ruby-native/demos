@@ -28,7 +28,7 @@ class BookSearch
     # floating results that have a cover to the top for a cleaner-looking list.
     Array(fetch["docs"])
       .filter_map { |doc| build_result(doc) }
-      .sort_by.with_index { |result, i| [result.cover_url ? 0 : 1, i] }
+      .sort_by.with_index { |result, i| [ result.cover_url ? 0 : 1, i ] }
   rescue => e
     Rails.logger.warn("BookSearch failed: #{e.class} #{e.message}")
     []
