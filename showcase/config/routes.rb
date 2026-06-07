@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       patch :progress, action: :update_progress
     end
     collection do
-      get :manual
+      get "manual/new", action: :manual, as: :manual
     end
   end
 
