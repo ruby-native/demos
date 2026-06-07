@@ -6,10 +6,10 @@
             end
   src = if book.cover.attached?
           url_for(book.cover)
-        elsif book.isbn.present?
-          image_path("covers/#{book.isbn}.jpg")
-        else
+        elsif book.cover_url.present?
           book.cover_url
+        elsif book.isbn.present?
+          (image_path("covers/#{book.isbn}.jpg") rescue nil)
         end
 %>
 <div class="<%= classes %> overflow-hidden bg-stone-200 shadow-cover ring-1 ring-stone-950/5">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_27_212935) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_07_131237) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -52,15 +52,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_27_212935) do
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["user_id", "isbn"], name: "index_books_on_user_id_and_isbn", unique: true, where: "isbn IS NOT NULL"
     t.index ["user_id"], name: "index_books_on_user_id"
-  end
-
-  create_table "notes", force: :cascade do |t|
-    t.text "body"
-    t.integer "book_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_notes_on_book_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -83,6 +76,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_27_212935) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "users"
-  add_foreign_key "notes", "books"
   add_foreign_key "sessions", "users"
 end

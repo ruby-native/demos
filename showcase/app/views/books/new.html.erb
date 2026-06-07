@@ -1,35 +1,73 @@
 <% content_for :title, "Add book" %>
 
-<%= native_form_tag %>
+<%= native_navbar_tag "Add book" %>
 
-<%= native_navbar_tag do |navbar| %>
-  <% navbar.submit_button title: "Save" %>
-<% end %>
-
-<%= form_with model: @book, class: "px-5 pt-6 space-y-5" do |f| %>
-  <% if @book.errors.any? %>
-    <div class="rounded-xl bg-red-50 text-red-900 ring-1 ring-red-200 px-4 py-3 text-[0.9375rem]">
-      <%= @book.errors.full_messages.to_sentence %>
-    </div>
+<div class="px-5 pt-5">
+  <%= form_with url: new_book_path, method: :get, data: { turbo_frame: "search_results" }, class: "flex gap-2" do |f| %>
+    <%= f.search_field :q, value: @query, autofocus: true, placeholder: "Search by title or author",
+          autocomplete: "off",
+          class: "flex-1 rounded-xl bg-white px-3.5 py-3 text-base ring-1 ring-stone-950/10 placeholder:text-stone-400 focus:outline-2 focus:outline-accent-600 -outline-offset-1 transition" %>
+    <%= f.submit "Search",
+          class: "rounded-xl bg-accent-600 hover:bg-accent-700 text-white px-4 text-[0.9375rem] font-medium active:scale-[0.99] transition cursor-pointer" %>
   <% end %>
+</div>
 
-  <div>
-    <%= f.label :title, class: "block text-[0.8125rem] font-medium text-stone-700 mb-1.5" %>
-    <%= f.text_field :title, required: true,
-          class: "block w-full rounded-xl bg-white px-3.5 py-3 text-base ring-1 ring-stone-950/10 placeholder:text-stone-400 focus:outline-2 focus:outline-accent-600 -outline-offset-1 transition" %>
-  </div>
-  <div>
-    <%= f.label :author, class: "block text-[0.8125rem] font-medium text-stone-700 mb-1.5" %>
-    <%= f.text_field :author, required: true,
-          class: "block w-full rounded-xl bg-white px-3.5 py-3 text-base ring-1 ring-stone-950/10 placeholder:text-stone-400 focus:outline-2 focus:outline-accent-600 -outline-offset-1 transition" %>
-  </div>
-  <div>
-    <%= f.label :cover, "Cover", class: "block text-[0.8125rem] font-medium text-stone-700 mb-1.5" %>
-    <%= f.file_field :cover,
-          accept: "image/*",
-          class: "block w-full rounded-xl bg-white px-3.5 py-3 text-[0.9375rem] ring-1 ring-stone-950/10 file:mr-3 file:rounded-md file:border-0 file:bg-stone-100 file:px-3 file:py-1.5 file:text-stone-700 file:font-medium file:text-[0.8125rem] file:cursor-pointer" %>
+<%= turbo_frame_tag "search_results" do %>
+  <div class="turbo-spinner py-16 items-center justify-center" aria-hidden="true">
+    <svg class="size-7 animate-spin text-accent-600" viewBox="0 0 24 24" fill="none">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8V0C5.4 0 0 5.4 0 12h4Z"></path>
+    </svg>
   </div>
 
-  <%= f.submit "Save",
-        class: "native-hidden mt-2 w-full rounded-xl bg-accent-600 hover:bg-accent-700 text-white text-[0.9375rem] font-medium py-3.5 active:scale-[0.99] transition cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600" %>
+  <div class="frame-body">
+    <% if @query.present? %>
+      <% if @results.any? %>
+        <ul role="list" class="px-5 pt-6 space-y-3">
+          <% @results.each do |result| %>
+            <li>
+              <%= button_to books_path, method: :post,
+                    params: { book: { title: result.title, author: result.author, isbn: result.isbn, pages: result.pages, cover_url: result.cover_url, status: "want_to_read" } },
+                    form: { data: { turbo_frame: "_top" } },
+                    data: native_haptic_data(:success),
+                    class: "flex gap-4 w-full text-left p-3 rounded-2xl bg-white ring-1 ring-stone-950/5 active:bg-stone-50 transition-colors cursor-pointer" do %>
+                <div class="w-[52px] h-[78px] rounded-sm overflow-hidden bg-stone-200 shrink-0 ring-1 ring-stone-950/5">
+                  <% if result.cover_url.present? %>
+                    <img src="<%= result.cover_url %>" alt="" class="size-full object-cover" loading="lazy">
+                  <% end %>
+                </div>
+                <div class="flex-1 min-w-0 self-center">
+                  <p class="font-display text-base font-semibold leading-snug line-clamp-2 text-stone-900"><%= result.title %></p>
+                  <p class="text-[0.875rem] text-stone-500 truncate mt-0.5"><%= result.author %></p>
+                  <% if result.pages %>
+                    <p class="text-[0.8125rem] text-stone-400 mt-1 tabular-nums"><%= result.pages %> pages</p>
+                  <% end %>
+                </div>
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-6 shrink-0 self-center text-accent-600">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clip-rule="evenodd"/>
+                </svg>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="mx-5 mt-6 rounded-2xl border-2 border-dashed border-stone-300 p-6 text-center">
+          <p class="font-display text-base font-semibold text-stone-700">No matches for "<%= @query %>"</p>
+          <p class="mt-1 text-[0.875rem] text-stone-500">Try a different search, or add it yourself.</p>
+          <%= link_to "Enter it manually", manual_books_path, data: { turbo_frame: "_top" },
+                class: "mt-4 inline-flex items-center rounded-full bg-stone-900 px-4 py-2 text-[0.875rem] font-semibold text-white active:scale-[0.98] transition" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="px-5 mt-12 text-center">
+        <div class="mx-auto inline-flex size-12 items-center justify-center rounded-2xl bg-accent-100 text-accent-700" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="currentColor" class="size-6"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd"/></svg>
+        </div>
+        <p class="mt-4 font-display text-lg font-semibold text-stone-800">Find your next book</p>
+        <p class="mt-1 text-[0.9375rem] text-stone-500 text-pretty max-w-[30ch] mx-auto">Search by title or author and we'll pull in the cover and details.</p>
+        <%= link_to "Enter a book manually", manual_books_path, data: { turbo_frame: "_top" },
+              class: "mt-5 inline-block text-[0.9375rem] font-medium text-accent-700" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

@@ -11,14 +11,11 @@ appearance:
 
 tabs:
   - title: Library
-    path: /
+    path: /books
     icon: books.vertical
     icons:
       ios: books.vertical
       android: menu_book
-    auto_route:
-      - /
-      - /books/
   - title: Discover
     path: /discover
     icon: sparkles

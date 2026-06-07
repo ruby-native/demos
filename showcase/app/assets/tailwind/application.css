@@ -37,3 +37,9 @@
   text-transform: uppercase;
   color: var(--color-stone-500);
 }
+
+/* While a Turbo Frame loads (e.g. book search), show its spinner and hide the
+   stale body. Turbo sets the [busy] attribute on the frame during the request. */
+.turbo-spinner { display: none; }
+turbo-frame[busy] .turbo-spinner { display: flex; }
+turbo-frame[busy] .frame-body { display: none; }

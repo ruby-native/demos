@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
   resource :session
+  resource :demo_session, only: :create
 
-  resources :books do
-    patch :finish, on: :member
-    resources :notes, only: [:new, :create]
+  resources :books, except: %i[edit update] do
+    member do
+      patch :change_status
+      get "progress/edit", action: :progress, as: :edit_progress
+      patch :progress, action: :update_progress
+    end
+    collection do
+      get :manual
+    end
   end
 
   get "discover", to: "pages#discover"

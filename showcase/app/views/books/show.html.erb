@@ -1,5 +1,34 @@
 <% content_for :title, @book.title %>
 
+<%= native_navbar_tag do |navbar| %>
+  <% navbar.button "More", icons: { ios: "ellipsis.circle", android: "more_vert" } do |menu| %>
+    <% if @book.currently_reading? %>
+      <% menu.item "Update progress", href: edit_progress_book_path(@book), icons: { ios: "book", android: "menu_book" } %>
+    <% end %>
+    <% if @book.want_to_read? %>
+      <% menu.item "Start reading", click: "#status-reading", icons: { ios: "book", android: "menu_book" } %>
+    <% end %>
+    <% unless @book.finished? %>
+      <% menu.item "Mark as finished", click: "#status-finished", icons: { ios: "checkmark.circle", android: "check_circle" } %>
+    <% end %>
+    <% if @book.finished? %>
+      <% menu.item "Move back to reading", click: "#status-reading", icons: { ios: "book", android: "menu_book" } %>
+    <% end %>
+    <% unless @book.want_to_read? %>
+      <% menu.item "Move to want to read", click: "#status-want", icons: { ios: "bookmark", android: "bookmark" } %>
+    <% end %>
+    <% menu.item "Delete", click: "#delete-book", icons: { ios: "trash", android: "delete" } %>
+  <% end %>
+<% end %>
+
+<% if flash[:celebrate] %>
+  <div class="mx-5 mt-5 rounded-2xl bg-emerald-50 ring-1 ring-emerald-200 p-5 text-center">
+    <p class="font-display text-xl font-semibold text-emerald-900 text-balance">You finished <%= flash[:celebrate] %></p>
+    <p class="mt-1 text-[0.9375rem] text-emerald-700">That's one more for your year.</p>
+  </div>
+  <%= native_review_tag %>
+<% end %>
+
 <%
   status_styles =
     case @book.status
@@ -41,6 +70,8 @@
         <div class="h-full rounded-full bg-accent-600 w-(--progress)" style="--progress: <%= pct %>%"></div>
       </div>
       <p class="mt-2 text-[0.8125rem] font-medium text-stone-500 tabular-nums"><%= pct %>% complete</p>
+      <%= link_to "Update progress", edit_progress_book_path(@book),
+            class: "mt-4 block w-full rounded-xl bg-accent-600 text-white text-center text-[0.9375rem] font-medium py-2.5 active:scale-[0.99] transition" %>
     </div>
   </section>
 <% end %>
@@ -66,26 +97,32 @@
   </section>
 <% end %>
 
-<section class="mt-8">
-  <%= render "shared/section_label", text: "Notes" %>
-  <% if @notes.any? %>
-    <ul role="list" class="mx-5 space-y-3">
-      <% @notes.each do |note| %>
-        <li class="rounded-2xl bg-white ring-1 ring-stone-950/5 p-4">
-          <p class="text-[0.9375rem] text-stone-900 text-pretty leading-relaxed"><%= simple_format(note.body) %></p>
-          <p class="mt-2 text-[0.75rem] font-medium tracking-wider uppercase text-stone-400"><%= note.created_at.strftime("%b %-d, %Y") %></p>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <div class="mx-5 rounded-2xl border-2 border-dashed border-stone-300 bg-transparent p-6 text-center">
-      <p class="font-display text-base font-semibold text-stone-700">No notes yet</p>
-      <p class="mt-1 text-[0.875rem] text-stone-500 text-pretty">Capture a passage, a thought, or where you left off.</p>
-      <%= link_to new_book_note_path(@book),
-            class: "mt-4 inline-flex items-center gap-1.5 rounded-full bg-stone-900 px-4 py-2 text-[0.875rem] font-semibold text-white active:scale-[0.98] transition" do %>
-        <svg viewBox="0 0 20 20" fill="currentColor" class="size-4" aria-hidden="true"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"/></svg>
-        Add a note
-      <% end %>
-    </div>
-  <% end %>
+<%#
+  Web fallback for the navbar overflow menu at the top of the page. In the app
+  the native menu drives these actions through its click: selectors; on the web
+  they are ordinary buttons. native-hidden keeps them out of the app, so the
+  menu stays the only copy the user sees there. The haptics live on the buttons
+  themselves, so they fire whether tapped on the web or clicked by the menu.
+%>
+<section class="px-5 mt-8 native-hidden">
+  <%
+    action = "block w-full rounded-2xl bg-white ring-1 ring-stone-950/5 py-3.5 text-center text-[0.9375rem] font-semibold text-stone-800 active:bg-stone-50 transition cursor-pointer"
+    danger = action.sub("text-stone-800", "text-red-600")
+  %>
+  <div class="space-y-2">
+    <% if @book.want_to_read? %>
+      <%= button_to "Start reading", change_status_book_path(@book, status: "currently_reading"), method: :patch, id: "status-reading", class: action %>
+    <% end %>
+    <% unless @book.finished? %>
+      <%= button_to "Mark as finished", change_status_book_path(@book, status: "finished"), method: :patch, id: "status-finished", data: native_haptic_data(:success), class: action %>
+    <% end %>
+    <% if @book.finished? %>
+      <%= button_to "Move back to reading", change_status_book_path(@book, status: "currently_reading"), method: :patch, id: "status-reading", class: action %>
+    <% end %>
+    <% unless @book.want_to_read? %>
+      <%= button_to "Move to want to read", change_status_book_path(@book, status: "want_to_read"), method: :patch, id: "status-want", class: action %>
+    <% end %>
+    <%= button_to "Delete", book_path(@book), method: :delete, id: "delete-book",
+          data: native_haptic_data(:warning, turbo_confirm: "Remove #{@book.title} from your shelf?"), class: danger %>
+  </div>
 </section>

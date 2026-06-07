@@ -1,9 +1,21 @@
 <% content_for :title, "Stats" %>
 
+<% goal_pct = @reading_goal.to_i > 0 ? [(@finished_this_year.to_f / @reading_goal * 100).round, 100].min : 0 %>
+<% remaining = @reading_goal - @finished_this_year %>
+
 <div class="px-5 pt-6">
-  <div class="rounded-3xl bg-accent-600 text-accent-50 p-6 ring-1 ring-accent-700/30 shadow-cover">
-    <p class="text-[0.8125rem] font-semibold tracking-wider uppercase text-accent-100">Finished this year</p>
-    <p class="font-display text-[5rem]/none font-semibold mt-3 tabular-nums text-white"><%= @finished_count %></p>
+  <div class="rounded-3xl bg-accent-600 p-6 ring-1 ring-accent-700/30 shadow-cover">
+    <p class="text-[0.8125rem] font-semibold tracking-wider uppercase text-accent-100"><%= Time.current.year %> reading goal</p>
+    <p class="font-display mt-3 tabular-nums text-white">
+      <span class="text-[5rem]/none font-semibold"><%= @finished_this_year %></span>
+      <span class="text-2xl font-semibold text-accent-100"> / <%= @reading_goal %> books</span>
+    </p>
+    <div class="mt-4 h-2.5 rounded-full bg-accent-700/40 overflow-hidden">
+      <div class="h-full rounded-full bg-white w-(--progress)" style="--progress: <%= goal_pct %>%"></div>
+    </div>
+    <p class="mt-2 text-[0.875rem] text-accent-100">
+      <%= remaining > 0 ? "#{remaining} #{"book".pluralize(remaining)} to go" : "Goal reached. Nice." %>
+    </p>
   </div>
 </div>
 
@@ -15,16 +27,16 @@
       <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @currently_reading_count %></p>
     </li>
     <li class="p-5">
+      <p class="eyebrow">Finished</p>
+      <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @finished_count %></p>
+    </li>
+    <li class="p-5">
       <p class="eyebrow">To read</p>
       <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @want_to_read_count %></p>
     </li>
     <li class="p-5">
       <p class="eyebrow">Pages read</p>
       <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= number_with_delimiter(@pages_read) %></p>
-    </li>
-    <li class="p-5">
-      <p class="eyebrow">Avg / book</p>
-      <p class="font-display text-3xl font-semibold mt-2 tabular-nums text-stone-900"><%= @finished_count.to_i > 0 ? number_with_delimiter((@pages_read.to_f / @finished_count).round) : "0" %></p>
     </li>
   </ul>
 </section>
