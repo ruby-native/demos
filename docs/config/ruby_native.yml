@@ -10,19 +10,19 @@ appearance:
 tabs:
   - title: Today
     path: /today
-    icon: sun.max
     icons:
+      ios: sun.max
       android: wb_sunny
   - title: Inbox
     path: /inbox
-    icon: tray
     icons:
+      ios: tray
       android: inbox
     badge: true
   - title: Done
     path: /done
-    icon: checkmark.circle
     icons:
+      ios: checkmark.circle
       android: check_circle
   - title: Profile
     path: /profile

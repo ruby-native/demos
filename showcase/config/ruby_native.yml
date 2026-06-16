@@ -12,25 +12,21 @@ appearance:
 tabs:
   - title: Library
     path: /books
-    icon: books.vertical
     icons:
       ios: books.vertical
       android: menu_book
   - title: Discover
     path: /discover
-    icon: sparkles
     icons:
       ios: sparkles
       android: auto_awesome
   - title: Stats
     path: /stats
-    icon: chart.bar
     icons:
       ios: chart.bar
       android: bar_chart
   - title: Profile
     path: /profile
-    icon: person
     icons:
       ios: person
       android: person
