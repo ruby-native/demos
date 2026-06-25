@@ -5,6 +5,10 @@
     often the prompt actually appears. %>
 <%= native_review_tag if @stamp %>
 
+<%= native_navbar_tag @brewery.name do |navbar| %>
+  <% navbar.share_button %>
+<% end %>
+
 <%# Hero photo %>
 <% if @brewery.photo.attached? %>
   <div class="-mx-4 sm:mx-0 <%= native_app? ? 'mt-2' : '-mt-4' %>">
