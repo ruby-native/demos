@@ -8,6 +8,10 @@ appearance:
   background_color:
     light: "#FFFBF5"
     dark: "#171210"
+  splash:
+    enabled: true
+    spinner_color: "#FFFFFF"
+    status_bar: light
 
 tabs:
   - title: Library
