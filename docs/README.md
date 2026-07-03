@@ -27,7 +27,7 @@ password: password123
 | Doc page | Where in the app |
 |---|---|
 | `tabs.md` | Bottom tab bar visible from any tab |
-| `navbar.md` | Inbox (title + leading menu + trailing button), Profile (title + leading menu), Edit profile (title + submit button) |
+| `navbar.md` | Inbox (title + leading menu + trailing button), Profile (title + leading menu), Edit profile (title + submit button), Today (segments) |
 | `forms.md` | New todo form (`/todos/new`), Edit todo form, Edit profile form. `native_form_tag` marks each. |
 | `badges.md` | Inbox tab badge, driven by `native_badge_tag(tab: pending_count)` on every page |
 | `fab.md` | Today tab. Plus icon links to new todo. |
