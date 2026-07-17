@@ -4,7 +4,7 @@
 <% content_for :title, @filter ? filter_labels[@filter] : "Library" %>
 
 <% if @filter.nil? %>
-  <%= native_navbar_tag do |navbar| %>
+  <%= native_navbar_tag "Library" do |navbar| %>
     <% navbar.button "Filter", icons: { ios: "line.3.horizontal.decrease", android: "filter_list" }, position: "leading" do |menu| %>
       <% menu.item "Currently reading", href: root_path(filter: "currently_reading"), icons: { ios: "book",             android: "menu_book" } %>
       <% menu.item "Want to read",      href: root_path(filter: "want_to_read"),      icons: { ios: "bookmark",         android: "bookmark" } %>
