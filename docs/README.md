@@ -40,3 +40,12 @@ password: password123
 
 - IAP and Advanced Mode captures come from Beervana, not here.
 - OAuth not wired up.
+
+## CI test support
+
+The umbrella `bin/ci` boots this app as the target for native UI test suites. Two env vars control test-only behavior:
+
+- `RUBY_NATIVE_MODE` sets `app.mode` in `config/ruby_native.yml` (rendered through ERB). Defaults to `normal`; set `advanced` to boot an Advanced Mode instance.
+- `RUBY_NATIVE_TEST_SUPPORT=1` reveals the Testing link on the profile page. That link opens `/testing`, a page holding everything not tied to a recording page: push registration, overscroll colors, an external link, and a color scheme indicator. Recordings never set the env var, so they never see any of it.
+
+Each CI instance gets its own database via `DATABASE_URL` (for example `sqlite3:storage/ci_android.sqlite3` on port 3024) so concurrent suites never share mutable state with each other or with `bin/dev`.

@@ -1,5 +1,5 @@
 app:
-  mode: normal
+  mode: <%= ENV.fetch("RUBY_NATIVE_MODE", "normal") %>
 
 appearance:
   tint_color: "#0d9488"

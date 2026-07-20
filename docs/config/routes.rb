@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
+  get "testing", to: "testing#index", as: :testing
+
   get "today", to: "today#index", as: :today
   get "inbox", to: "inbox#index", as: :inbox
   get "done", to: "done#index", as: :done

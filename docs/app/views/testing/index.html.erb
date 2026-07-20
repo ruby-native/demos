@@ -1,0 +1,23 @@
+<% content_for :title, "Testing" %>
+
+<%= native_navbar_tag("Testing") %>
+<%= native_push_tag %>
+<%= native_overscroll_tag(top: "#f2f2f7", bottom: "#0d9488") %>
+
+<h1 class="<%= "native-hidden" if native_app? %>">Testing</h1>
+
+<p id="color-scheme">Scheme: unknown</p>
+
+<p><a id="external-link" href="https://example.com/">External link</a></p>
+
+<script>
+  (function() {
+    var query = window.matchMedia("(prefers-color-scheme: dark)");
+    function update() {
+      var el = document.getElementById("color-scheme");
+      if (el) el.textContent = "Scheme: " + (query.matches ? "dark" : "light");
+    }
+    query.addEventListener("change", update);
+    update();
+  })();
+</script>

@@ -37,3 +37,9 @@
       id: "sign-out-button",
       class: "native-hidden danger",
       data: { turbo_confirm: "Sign out of this account?" } %>
+
+<% if ENV["RUBY_NATIVE_TEST_SUPPORT"] %>
+  <div class="btn-row">
+    <%= link_to "Testing", testing_path, id: "testing-link", class: "btn secondary" %>
+  </div>
+<% end %>
