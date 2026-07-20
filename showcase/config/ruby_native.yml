@@ -19,6 +19,7 @@ tabs:
     icons:
       ios: books.vertical
       android: menu_book
+    auto_route: false
   - title: Discover
     path: /discover
     icons:
