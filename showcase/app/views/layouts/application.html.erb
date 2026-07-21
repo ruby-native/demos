@@ -22,6 +22,7 @@
 
   <body class="min-h-dvh bg-surface text-stone-900 font-sans antialiased">
     <%= native_tabs_tag(enabled: authenticated?) %>
+    <%= native_overscroll_tag(top: "#fffbf5") %>
 
     <main class="native-inset pb-10">
       <%= render "shared/flash" %>
