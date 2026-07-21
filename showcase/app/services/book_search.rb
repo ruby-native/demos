@@ -36,9 +36,25 @@ class BookSearch
 
   private
 
+  # A scanned barcode arrives as a bare ISBN-13 (or ISBN-10). Open Library's
+  # general `q` does usually match one, but the fielded `isbn:` lookup is exact,
+  # so a scan lands on the right book instead of a fuzzy list. Anything that
+  # isn't ISBN-shaped is passed through as a normal title/author search.
+  ISBN_PATTERN = /\A(?:\d[\d-]{8,}[\dXx])\z/
+
+  def isbn_query
+    digits = @query.delete("-")
+    return nil unless [ 10, 13 ].include?(digits.length)
+    "isbn:#{digits}"
+  end
+
+  def search_term
+    (@query.match?(ISBN_PATTERN) && isbn_query) || @query
+  end
+
   def fetch
     uri = URI(ENDPOINT)
-    uri.query = URI.encode_www_form(q: @query, fields: FIELDS, limit: @limit)
+    uri.query = URI.encode_www_form(q: search_term, fields: FIELDS, limit: @limit)
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true

@@ -38,7 +38,14 @@
   </div>
   <div>
     <%= f.label :isbn, "ISBN", class: label %>
-    <%= f.text_field :isbn, class: field %>
+    <div class="flex gap-2">
+      <%= f.text_field :isbn, class: "#{field} flex-1" %>
+      <%# Fills the ISBN field directly. No submit: here, so you can review the
+          scanned value alongside the other fields before saving. %>
+      <%= native_scan_button_tag "Scan", target: "#book_isbn",
+            formats: [ :ean13, :ean8, :upca ],
+            class: "shrink-0 rounded-xl bg-stone-900 px-4 text-[0.9375rem] font-medium text-white active:scale-[0.99] transition cursor-pointer" %>
+    </div>
   </div>
   <div>
     <%= f.label :cover, "Cover image", class: label %>

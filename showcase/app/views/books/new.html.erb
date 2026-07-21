@@ -1,6 +1,8 @@
 <% content_for :title, "Add book" %>
 
-<%= native_navbar_tag "Add book" %>
+<%= native_navbar_tag "Add book" do |navbar| %>
+  <% navbar.button "Scan", icons: { ios: "barcode.viewfinder", android: "barcode_scanner" }, click: "#scan-isbn" %>
+<% end %>
 
 <div class="px-5 pt-5">
   <%= form_with url: new_book_path, method: :get, data: { turbo_frame: "search_results" }, class: "flex gap-2" do |f| %>
@@ -11,6 +13,14 @@
           class: "rounded-xl bg-accent-600 hover:bg-accent-700 text-white px-4 text-[0.9375rem] font-medium active:scale-[0.99] transition cursor-pointer" %>
   <% end %>
 </div>
+
+<%# Hidden trigger for the navbar Scan button. A navbar button dispatches an
+    href or a click on a CSS selector, so the scan options have to live on a
+    real element. submit: true resolves the form from the filled field (#q),
+    not from this button, so it works from outside the form: the ISBN lands in
+    the search box and the Turbo Frame search fires in one tap. %>
+<%= native_scan_button_tag "Scan", target: "#q", submit: true,
+      formats: [ :ean13, :ean8, :upca ], id: "scan-isbn", class: "hidden" %>
 
 <%= turbo_frame_tag "search_results" do %>
   <div class="turbo-spinner py-16 items-center justify-center" aria-hidden="true">
